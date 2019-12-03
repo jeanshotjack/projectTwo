@@ -7,6 +7,12 @@ cache:
   directories:
     - node_modules
 before_install:
+<<<<<<< HEAD
+  - mysql -e 'CREATE DATABASE project2_db;'
+services: 
+  - mysql
+=======
   - mysql -e 'CREATE DATABASE noxdb;'
 services: 
 - mysql
+>>>>>>> 50f47cfdb5670d12940d03975071786dacc15435
