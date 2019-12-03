@@ -5,7 +5,7 @@ var $submitBtn = $("#submit");
 var $postList = $("#post-list");
 
 // The api object contains methods for each kind of request we'll make
-var api = {
+var API = {
   savePost: function(post) {
     return $.ajax({
       headers: {
@@ -32,7 +32,7 @@ var api = {
 
 // refreshposts gets new posts from the db and repopulates the list
 var refreshPost = function() {
-  api.getPost().then(function(data) {
+  API.getPost().then(function(data) {
     var $posts = data.map(function(post) {
       var $a = $("<a>")
         .text(post.text)
@@ -60,17 +60,17 @@ var refreshPost = function() {
 var handleFormSubmit = function(event) {
   event.preventDefault();
 
-  var post = {
+  var newPost = {
     text: $postText.val().trim(),
     description: $postDescription.val().trim()
   };
 
-  if (!(post.text && post.description)) {
+  if (!(newPost.text && newPost.description)) {
     alert("You must enter an post text and description!");
     return;
   }
 
-  api.savePost(post).then(function() {
+  API.savePost(newPost).then(function() {
     refreshPost();
   });
 
@@ -85,7 +85,7 @@ var handleDeleteBtnClick = function() {
     .parent()
     .attr("data-id");
 
-  api.deletePost(idToDelete).then(function() {
+  API.deletePost(idToDelete).then(function() {
     refreshPost();
   });
 };

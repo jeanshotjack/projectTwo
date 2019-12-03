@@ -4,7 +4,7 @@
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
         <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" method="POST" action="/api/posts/">
+        <form class="clearfix mb-4" action="POST">
           <div class="form-group">
             <label for="post-text">Post Title</label>
             <input type="text" id="post-text" class="form-control" aria-describedby="example-text" placeholder="Enter a headline">
@@ -17,10 +17,11 @@
         </form>
         <h3>Posts:</h3>
         <ul id="post-list" class="list-group">
-          {{#each Post}}
+          {{#each Posts}}
           <li data-id="{{this.id}}" class="list-group-item">
             <h5>{{this.title}}</h5>
             <p>{{this.body}}</p>
+            <a href="posts/{{this.id}}">{{this.title}}</a>
           </li>
           {{/each}}
         </ul>
