@@ -19,48 +19,53 @@ module.exports = function(app) {
       });
     });
   });
-  app.get("/login", function(req, res) {
-    var userInfo = req.body;
-    if (!userInfo.username || !userInfo.password) {
-      res.render("login");
-      //  {
-      //   message: "Please Fill Out All Fields",
-      //   type: "error",
-      //   username: userInfo.username
-      // });
-    } else {
-      PlayerModel.findOne({ username: userInfo.username }, function(err, user) {
-        if (err) {
-          res.render("/login", {
-            message: "Database Error",
-            type: "error",
-            username: userInfo.username
-          });
-        }
-        if (user) {
-          var hash = crypto
-            .pbkdf2Sync(userInfo.password, user.salt, 10000, 64, "sha512")
-            .toString("hex");
-          if (hash === user.password) {
-            req.session.user = user;
-            res.redirect("/");
-          } else {
-            res.render("/login", {
-              message: "Invalid Password",
-              type: "error",
-              username: userInfo.username
-            });
-          }
-        } else {
-          res.render("/login", {
-            message: "User Does Not Exist",
-            type: "error",
-            username: userInfo.username
-          });
-        }
-      });
-    }
-  });
+  // app.get("/login", function(req, res) {
+  //   var userInfo = req.body;
+  //   if (!userInfo.username || !userInfo.password) {
+  //     res.render("login");
+  //     //  {
+  //     //   message: "Please Fill Out All Fields",
+  //     //   type: "error",
+  //     //   username: userInfo.username
+  //     // });
+  //   } else {
+  //     app.post("/api/posts", function(req, res) {
+  //       db.Post.create(req.body).then(function() {
+  //         res.json(dbPost);
+  //       });
+  //     });
+  //     db.User.findOne({ username: userInfo.username }, function(err, user) {
+  //       if (err) {
+  //         res.render("/login", {
+  //           message: "Database Error",
+  //           type: "error",
+  //           username: userInfo.username
+  //         });
+  //       }
+  //       if (user) {
+  //         var hash = crypto
+  //           .pbkdf2Sync(userInfo.password, user.salt, 10000, 64, "sha512")
+  //           .toString("hex");
+  //         if (hash === user.password) {
+  //           req.session.user = user;
+  //           res.redirect("/");
+  //         } else {
+  //           res.render("/login", {
+  //             message: "Invalid Password",
+  //             type: "error",
+  //             username: userInfo.username
+  //           });
+  //         }
+  //       } else {
+  //         res.render("/login", {
+  //           message: "User Does Not Exist",
+  //           type: "error",
+  //           username: userInfo.username
+  //         });
+  //       }
+  //     });
+  //   }
+  // });
   app.post("/createaccount", function(req, res) {
     var userInfo = req.body;
 
@@ -80,7 +85,7 @@ module.exports = function(app) {
         username: userInfo.username
       });
     } else {
-      PlayerModel.findOne({ username: userInfo.username }, function(err, user) {
+      db.User.findOne({ username: userInfo.username }, function(err, user) {
         if (err) {
           res.render("signup", {
             message: "Database Error",
@@ -100,19 +105,13 @@ module.exports = function(app) {
             .pbkdf2Sync(userInfo.password, salt, 10000, 64, "sha512")
             .toString("hex");
 
-          var newPlayer = new PlayerModel({
+          var newUser = {
             username: userInfo.username,
             password: hash,
             salt: salt
-          });
-        
-          app.post("/api/users", function(req, res) {
-            db.Post.create(req.body).then(function(dbPost) {
-              res.json(dbPost);
-            });
-
-          });
-          newPlayer.create(function(err, PlayerModel) {
+          };
+          // eslint-disable-next-line no-unused-vars
+          db.User.create(newUser).then(function(user) {
             if (err) {
               res.render("signup", {
                 message: "Database Error",
@@ -130,7 +129,7 @@ module.exports = function(app) {
       });
     }
   });
-  app.post("/signup", function(req, res) {
+  app.get("/signup", function(req, res) {
     res.render("signup");
   });
   app.post("/login", function(req, res) {
@@ -143,7 +142,7 @@ module.exports = function(app) {
         username: userInfo.username
       });
     } else {
-      PlayerModel.findOne({ username: userInfo.username }, function(err, user) {
+      db.User.findOne({ username: userInfo.username }, function(err, user) {
         if (err) {
           res.render("login", {
             message: "Database Error",
