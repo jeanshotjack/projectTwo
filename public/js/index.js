@@ -3,6 +3,9 @@ var $postName = $("#post-text");
 var $postBody = $("#post-description");
 var $submitBtn = $("#submit");
 var $postList = $("#post-list");
+var $username = $("#username");
+var $userCreate = $("#usercreate");
+var $userSubmit = $("#submituser");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -26,6 +29,22 @@ var API = {
     return $.ajax({
       url: "api/posts/" + id,
       type: "DELETE"
+    });
+  },
+  saveUser: function(user) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/users",
+      data: JSON.stringify(user)
+    });
+  },
+  getUsers: function() {
+    return $.ajax({
+      url: "api/users",
+      type: "GET"
     });
   }
 };
@@ -59,6 +78,22 @@ var refreshPosts = function() {
   });
 };
 
+var userCreation = function(event) {
+  event.preventDefault();
+
+  var newUser = {
+    name: $userCreate
+  };
+
+  if (!newUser.name) {
+    alert("you must enter a user");
+    return;
+  }
+
+  API.saveUser(newUser);
+
+  $userCreate.val("");
+};
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
 var handleFormSubmit = function(event) {
@@ -66,11 +101,12 @@ var handleFormSubmit = function(event) {
 
   var newPost = {
     title: $postName.val().trim(),
-    body: $postBody.val().trim()
+    body: $postBody.val().trim(),
+    UserId: $username.val().trim()
   };
 
-  if (!(newPost.title && newPost.body)) {
-    alert("You must enter an example text and description!");
+  if (!(newPost.title && newPost.body && newPost.UserId)) {
+    alert("You must enter an example text, description, and user!");
     return;
   }
 
@@ -80,6 +116,7 @@ var handleFormSubmit = function(event) {
 
   $postName.val("");
   $postBody.val("");
+  $username.val("");
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
@@ -97,3 +134,4 @@ var handleDeleteBtnClick = function() {
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $postList.on("click", ".delete", handleDeleteBtnClick);
+$userSubmit.on("click", userCreation);
