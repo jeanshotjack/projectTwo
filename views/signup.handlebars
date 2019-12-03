@@ -2,11 +2,18 @@
     <div class="login_div">
         <p style="color:green;"></p>
         <h1>Sign Up</h1>
-        <form action="/" method="POST"><input id="create_username_input" type="text" placeholder="Username"
-                name="username" /><br /><input id="create_password_input" type="password" placeholder="Password"
-                name="password" /><br /><input id="create_confirm_password_input" type="password"
-                placeholder="Confirm Password" name="confirm_password" /><br /><br /><input class="login_buttons"
-                id="back_to_login_button" type="submit" value="Back to Login" formaction="/login"/><input class="login_buttons"
-                id="sign_up_button" type="submit" value="Sign Up" formaction="/createaccount" method = "POST" /><br /></form>
+        <form action="/createaccount" method="post">
+            <input id="create_username_input" type="text" placeholder="Username" name="username" />
+            <br />
+            <input id="create_password_input" type="password" placeholder="Password" name="password" />
+            <br />
+            <input id="create_confirm_password_input" type="password" placeholder="Confirm Password"
+                name="confirm_password" />
+            <br />
+            <br />
+            <a href="/login">back to login</a>
+            <input class="login_buttons" id="sign_up_button" type="submit" value="Sign Up" />
+            <br />
+        </form>
     </div>
 </body>

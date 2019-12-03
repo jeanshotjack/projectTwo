@@ -1,36 +1,23 @@
 <html>
-  <head>
-    <title>Login</title>
-  </head>
-  <body class="login_body">
-    <div class="login_div">
-      <p style="color:green;"></p>
-      <h1>Login</h1>
-      <form action="/login" method="POST">
-        <input
-          id="username_input"
-          type="text"
-          placeholder="Username"
-          name="username"
-        /><br /><input
-          id="password_input"
-          type="password"
-          placeholder="Password"
-          name="password"
-        /><br /><br /><input
-          class="login_buttons"
-          id="login_button"
-          type="submit"
-          value="Login"
-          formaction="/login"
-        /><input
-          class="login_buttons"
-          id="create_account_button"
-          type="submit"
-          value="Create Account"
-          formaction="/createaccount"
-        /><br />
-      </form>
-    </div>
-  </body>
+
+<head>
+  <title>Login</title>
+</head>
+
+<body class="login_body">
+  <div class="login_div">
+    <p style="color:green;"></p>
+    <h1>Login</h1>
+    <form>
+      <input id="username_input" type="text" placeholder="Username" name="username" />
+      <br />
+      <input id="password_input" type="password" placeholder="Password" name="password" />
+      <br /><br />
+      <input class="login_buttons" id="login_button" type="submit" value="Login" formaction="/login" />
+      <a href="/createaccount">Create account</a>
+      <br />
+    </form>
+  </div>
+</body>
+
 </html>
