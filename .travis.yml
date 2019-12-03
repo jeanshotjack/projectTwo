@@ -1,10 +1,12 @@
 language: node_js
 node_js: "8"
 branches:
-  only:
   - master
+  - jack
 cache:
   directories:
     - node_modules
 before_install:
-  - mysql -e 'CREATE DATABASE testdb;'
+  - mysql -e 'CREATE DATABASE noxdb;'
+services: 
+- mysql

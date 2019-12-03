@@ -2,13 +2,14 @@ var db = require("../models");
 var crypto = require("crypto");
 module.exports = function(app) {
   app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
+    db.Post.findAll({}).then(function(dbPost) {
       res.render("index", {
         msg: "Welcome!",
-        examples: dbExamples
+        Post: dbPost
       });
     });
   });
+<<<<<<< HEAD
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
     db.Example.findOne({ where: { id: req.params.id } }).then(function(
@@ -16,6 +17,14 @@ module.exports = function(app) {
     ) {
       res.render("example", {
         example: dbExample
+=======
+
+  // Load Post page and pass in an Post by id
+  app.get("/posts/:id", function(req, res) {
+    db.Post.findOne({ where: { id: req.params.id } }).then(function(dbPost) {
+      res.render("Post", {
+        Post: dbPost
+>>>>>>> 376b8dc8fdd151914efb2b8cb4ab221e723d97ef
       });
     });
   });
