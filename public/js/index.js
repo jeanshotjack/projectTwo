@@ -65,11 +65,11 @@ var handleFormSubmit = function(event) {
   event.preventDefault();
 
   var newPost = {
-    name: $postName.val().trim(),
+    title: $postName.val().trim(),
     body: $postBody.val().trim()
   };
 
-  if (!(newPost.name && newPost.body)) {
+  if (!(newPost.title && newPost.body)) {
     alert("You must enter an example text and description!");
     return;
   }
