@@ -1,10 +1,27 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Get all examples
   app.get("/api/posts", function(req, res) {
-    db.Post.findAll({}).then(function(dbPosts) {
+    var query = {};
+    if (req.query.user_id) {
+      query.AuthorId = req.query.user_id;
+    }
+    db.Post.findAll({
+      where: query,
+      include: [db.User]
+    }).then(function(dbPosts) {
       res.json(dbPosts);
+    });
+  });
+
+  app.get("/api/posts/:id", function(req, res) {
+    db.Post.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [db.User]
+    }).then(function(dbPost) {
+      res.json(dbPost);
     });
   });
 
@@ -17,7 +34,9 @@ module.exports = function(app) {
 
   // Delete an example by id
   app.delete("/api/posts/:id", function(req, res) {
-    db.Post.destroy({ where: { id: req.params.id } }).then(function(dbPost) {
+    db.Post.destroy({
+      where: { id: req.params.id }
+    }).then(function(dbPost) {
       res.json(dbPost);
     });
   });
