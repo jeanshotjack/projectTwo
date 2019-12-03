@@ -2,14 +2,7 @@ var db = require("../models");
 
 module.exports = function(app) {
   app.get("/api/posts", function(req, res) {
-    var query = {};
-    if (req.query.user_id) {
-      query.AuthorId = req.query.user_id;
-    }
-    db.Post.findAll({
-      where: query,
-      include: [db.User]
-    }).then(function(dbPosts) {
+    db.Post.findAll({}).then(function(dbPosts) {
       res.json(dbPosts);
     });
   });

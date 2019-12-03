@@ -12,7 +12,7 @@ var api = {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/posts",
+      url: "api/posts/",
       data: JSON.stringify(post)
     });
   },
@@ -32,7 +32,7 @@ var api = {
 
 // refreshposts gets new posts from the db and repopulates the list
 var refreshPost = function() {
-  api.getposts().then(function(data) {
+  api.getPost().then(function(data) {
     var $posts = data.map(function(post) {
       var $a = $("<a>")
         .text(post.text)
@@ -44,10 +44,6 @@ var refreshPost = function() {
           "data-id": post.id
         })
         .append($a);
-
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
 
       $li.append($button);
 
@@ -74,7 +70,7 @@ var handleFormSubmit = function(event) {
     return;
   }
 
-  api.savepost(post).then(function() {
+  api.savePost(post).then(function() {
     refreshPost();
   });
 
