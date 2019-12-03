@@ -6,7 +6,7 @@ module.exports = function(app) {
     db.Post.findAll({}).then(function(dbPost) {
       res.render("index", {
         msg: "Welcome!",
-        posts: dbPost
+        Post: dbPost
       });
     });
   });
