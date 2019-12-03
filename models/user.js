@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
     updatedAt: {
       type: DataTypes.DATE,
       defaultValue: sequelize.literal("CURRENT_TIMESTAMP()")
-}
+    }
   });
 
   User.associate = function(models) {
