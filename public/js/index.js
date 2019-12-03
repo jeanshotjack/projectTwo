@@ -1,10 +1,10 @@
 // Get references to page elements
-var $postText = $("#post-text");
-var $postDescription = $("#post-description");
+var $postName = $("#post-text");
+var $postBody = $("#post-description");
 var $submitBtn = $("#submit");
 var $postList = $("#post-list");
 
-// The api object contains methods for each kind of request we'll make
+// The API object contains methods for each kind of request we'll make
 var API = {
   savePost: function(post) {
     return $.ajax({
@@ -12,11 +12,11 @@ var API = {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/posts/",
+      url: "api/posts",
       data: JSON.stringify(post)
     });
   },
-  getPost: function() {
+  getPosts: function() {
     return $.ajax({
       url: "api/posts",
       type: "GET"
@@ -30,22 +30,26 @@ var API = {
   }
 };
 
-// refreshposts gets new posts from the db and repopulates the list
-var refreshPost = function() {
-  API.getPost().then(function(data) {
+// refreshExamples gets new examples from the db and repopulates the list
+var refreshPosts = function() {
+  API.getPosts().then(function(data) {
     var $posts = data.map(function(post) {
-      var $a = $("<a>")
+      var $link = $("<a>")
         .text(post.text)
         .attr("href", "/post/" + post.id);
 
-      var $li = $("<li>")
+      var $list = $("<li>")
         .attr({
           class: "list-group-item",
           "data-id": post.id
         })
-        .append($a);
+        .append($link);
 
-      $li.append($button);
+      var $button = $("<button>")
+        .addClass("btn btn-danger float-right delete")
+        .text("ｘ");
+
+      $list.append($button);
 
       return $li;
     });
@@ -55,38 +59,38 @@ var refreshPost = function() {
   });
 };
 
-// handleFormSubmit is called whenever we submit a new post
-// Save the new post to the db and refresh the list
+// handleFormSubmit is called whenever we submit a new example
+// Save the new example to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
 
   var newPost = {
-    text: $postText.val().trim(),
-    description: $postDescription.val().trim()
+    name: $postName.val().trim(),
+    body: $postBody.val().trim()
   };
 
-  if (!(newPost.text && newPost.description)) {
-    alert("You must enter an post text and description!");
+  if (!(newPost.name && newPost.body)) {
+    alert("You must enter an example text and description!");
     return;
   }
 
   API.savePost(newPost).then(function() {
-    refreshPost();
+    refreshPosts();
   });
 
-  $postText.val("");
-  $postDescription.val("");
+  $postName.val("");
+  $postBody.val("");
 };
 
-// handleDeleteBtnClick is called when an post's delete button is clicked
-// Remove the post from the db and refresh the list
+// handleDeleteBtnClick is called when an example's delete button is clicked
+// Remove the example from the db and refresh the list
 var handleDeleteBtnClick = function() {
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
 
   API.deletePost(idToDelete).then(function() {
-    refreshPost();
+    refreshPosts();
   });
 };
 
