@@ -19,6 +19,51 @@ module.exports = function(app) {
       });
     });
   });
+
+  app.post("/login", function(req, res) {
+    var userInfo = req.body;
+
+    if (!userInfo.username || !userInfo.password) {
+      res.render("login", {
+        message: "Please Fill Out All Fields",
+        type: "error",
+        username: userInfo.username
+      });
+    } else {
+      db.User.findOne({ username: userInfo.username }, function(err, user) {
+        if (err) {
+          res.render("login", {
+            message: "Database Error",
+            type: "error",
+            username: userInfo.username
+          });
+        }
+
+        if (user) {
+          var hash = crypto
+            .pbkdf2Sync(userInfo.password, user.salt, 10000, 64, "sha512")
+            .toString("hex");
+          if (hash === user.password) {
+            req.session.user = user;
+            res.redirect("/");
+            //res.render("game.pug", {username: user.username});
+          } else {
+            res.render("login", {
+              message: "Invalid Password",
+              type: "error",
+              username: userInfo.username
+            });
+          }
+        } else {
+          res.render("login", {
+            message: "User Does Not Exist",
+            type: "error",
+            username: userInfo.username
+          });
+        }
+      });
+    }
+  });
   // app.get("/login", function(req, res) {
   //   var userInfo = req.body;
   //   if (!userInfo.username || !userInfo.password) {
@@ -131,50 +176,6 @@ module.exports = function(app) {
   });
   app.get("/signup", function(req, res) {
     res.render("signup");
-  });
-  app.post("/login", function(req, res) {
-    var userInfo = req.body;
-
-    if (!userInfo.username || !userInfo.password) {
-      res.render("login", {
-        message: "Please Fill Out All Fields",
-        type: "error",
-        username: userInfo.username
-      });
-    } else {
-      db.User.findOne({ username: userInfo.username }, function(err, user) {
-        if (err) {
-          res.render("login", {
-            message: "Database Error",
-            type: "error",
-            username: userInfo.username
-          });
-        }
-
-        if (user) {
-          var hash = crypto
-            .pbkdf2Sync(userInfo.password, user.salt, 10000, 64, "sha512")
-            .toString("hex");
-          if (hash === user.password) {
-            req.session.user = user;
-            res.redirect("/");
-            //res.render("game.pug", {username: user.username});
-          } else {
-            res.render("login", {
-              message: "Invalid Password",
-              type: "error",
-              username: userInfo.username
-            });
-          }
-        } else {
-          res.render("login", {
-            message: "User Does Not Exist",
-            type: "error",
-            username: userInfo.username
-          });
-        }
-      });
-    }
   });
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
