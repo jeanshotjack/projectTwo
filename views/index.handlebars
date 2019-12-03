@@ -1,3 +1,4 @@
+
 <div id="home">
   <div class="container">
     <div class="row">
@@ -6,20 +7,20 @@
         <h2>This is our Home Page!</h2>
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
+            <label for="post-text">Post Name</label>
+            <input type="text" id="post-text" class="form-control" aria-describedby="post-text" placeholder="Enter Example Text">
           </div>
           <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
+            <label for="post-description">Post Body</label>
+            <textarea class="form-control" id="post-description" aria-describedby="post-description" placeholder="Enter Example Description"></textarea>
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
         <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
+        <ul id="post-list" class="list-group">
+          {{#each Post}}
           <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
+            <a href="example/{{this.id}}">{{this.title}}</a>
             <button class="btn btn-danger float-right delete">ｘ</button>
           </li>
           {{/each}}

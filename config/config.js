@@ -3,13 +3,13 @@ module.exports = {
   development: {
     username: "root",
     password: process.env.MYSQL_PASSWORD,
-    database: "exampledb",
+    database: "noxdb",
     host: "localhost",
     dialect: "mysql"
   },
   test: {
     username: "root",
-    password: null,
+    password: "2019codecamp",
     database: "testdb",
     host: "localhost",
     dialect: "mysql",
