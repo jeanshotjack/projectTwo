@@ -3,8 +3,17 @@ module.exports = function(sequelize, DataTypes) {
     name: DataTypes.STRING,
     pronouns: DataTypes.STRING,
     email: DataTypes.STRING,
-    DOB: DataTypes.DATE,
-    insta: DataTypes.STRING
+    password: DataTypes.STRING,
+    DOB: DataTypes.DATEONLY,
+    insta: DataTypes.STRING,
+    createdAt: {
+      type: DataTypes.DATE,
+      defaultValue: sequelize.literal("CURRENT_TIMESTAMP()")
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      defaultValue: sequelize.literal("CURRENT_TIMESTAMP()")
+    }
   });
 
   User.associate = function(models) {
