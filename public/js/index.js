@@ -4,11 +4,10 @@ var $postBody = $("#post-description");
 var $submitBtn = $("#submit");
 var $postList = $("#post-list");
 var $username = $("#username");
-var $userCreate = $("#usercreate");
-var $userSubmit = $("#submituser");
 
-// The API object contains methods for each kind of request we'll make
+// request methods
 var API = {
+  // new post intake
   savePost: function(post) {
     return $.ajax({
       headers: {
@@ -19,18 +18,21 @@ var API = {
       data: JSON.stringify(post)
     });
   },
+  //method to pull from db
   getPosts: function() {
     return $.ajax({
       url: "api/posts",
       type: "GET"
     });
   },
+  //delete
   deletePost: function(id) {
     return $.ajax({
       url: "api/posts/" + id,
       type: "DELETE"
     });
   },
+  //user intake
   saveUser: function(user) {
     return $.ajax({
       headers: {
@@ -41,6 +43,7 @@ var API = {
       data: JSON.stringify(user)
     });
   },
+  //pulls users from db
   getUsers: function() {
     return $.ajax({
       url: "api/users",
@@ -49,7 +52,7 @@ var API = {
   }
 };
 
-// refreshExamples gets new examples from the db and repopulates the list
+// pulls new posts from db, repopulates feed on refresh
 var refreshPosts = function() {
   API.getPosts().then(function(data) {
     var $posts = data.map(function(post) {
@@ -64,8 +67,9 @@ var refreshPosts = function() {
         })
         .append($link);
 
+      //flag button
       var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
+        .addClass("btn btn-outline-danger float-right flag")
         .text("ｘ");
 
       $list.append($button);
@@ -78,22 +82,6 @@ var refreshPosts = function() {
   });
 };
 
-var userCreation = function(event) {
-  event.preventDefault();
-
-  var newUser = {
-    name: $userCreate
-  };
-
-  if (!newUser.name) {
-    alert("you must enter a user");
-    return;
-  }
-
-  API.saveUser(newUser);
-
-  $userCreate.val("");
-};
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
 var handleFormSubmit = function(event) {
@@ -121,17 +109,17 @@ var handleFormSubmit = function(event) {
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
+// var handleDeleteBtnClick = function() {
+//   var idToDelete = $(this)
+//     .parent()
+//     .attr("data-id");
 
-  API.deletePost(idToDelete).then(function() {
-    refreshPosts();
-  });
-};
+//   API.deletePost(idToDelete).then(function() {
+//     refreshPosts();
+//   });
+// };
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
-$postList.on("click", ".delete", handleDeleteBtnClick);
-$userSubmit.on("click", userCreation);
+// $postList.on("click", ".delete", handleDeleteBtnClick);
+// here there should be a call to a flag function probably
