@@ -5,7 +5,6 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var db = require("./models");
 var session = require("express-session");
-var sessionstorage = require("sessionstorage");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
@@ -15,13 +14,12 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use(
   session({
-    secret: "keyboard cat",
+    secret: "Noxramus",
     resave: false,
     saveUninitialized: true,
     cookie: { secure: true }
   })
 );
-
 
 // Handlebars
 app.engine(

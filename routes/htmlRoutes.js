@@ -33,10 +33,7 @@ module.exports = function(app) {
           // res.render("login", {
           //   username: userInfo.username
           // });
-          console.log(userInfo.password);
-          console.log(username);
           if (username.length > 0) {
-            console.log(username[0].salt);
             var hash = crypto
               .pbkdf2Sync(
                 userInfo.password,
@@ -49,9 +46,17 @@ module.exports = function(app) {
             if (hash === username[0].password) {
               // req.session.username = username[0];
               sessionstorage.setItem("user", username[0]);
-              console.log(sessionstorage.getItem("user"));
-              console.log("Log in Successful");
-              res.redirect("/");
+              // console.log("Log in Successful");
+              // console.log(sessionstorage.getItem("user"));
+              // res.redirect("/");
+              if (req.session.user) {
+                req.session.user++;
+                res.end();
+              } else {
+                res.redirect("/");
+                req.session.user = 1;
+                res.end("welcome to the session demo. refresh!");
+              }
             } else {
               res.render("login", {
                 message: "Invalid Password",
