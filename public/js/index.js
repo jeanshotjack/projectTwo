@@ -49,6 +49,13 @@ var API = {
       url: "api/users",
       type: "GET"
     });
+  },
+  getOneUser: function() {
+    var id = $(this).data("UserId");
+    return $.ajax({
+      method: "GET",
+      url: "/api/users/" + id
+    });
   }
 };
 
