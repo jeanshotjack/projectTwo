@@ -1,3 +1,13 @@
+/* Logo Font */
+/* font-family: 'Alice', serif; */
+
+/* Body Font */
+/* font-family: 'Karla', sans-serif; */
+
+body {
+	font-family: 'Karla', sans-serif; 
+}
+
 .login_div {
 	text-align: center;
 	margin: 15% 28% 28% 28%;
@@ -14,6 +24,7 @@
 .login_buttons {
 	margin: 0px 5px 0px 5px;
 }
+
 #save_button {
 	width: 100px;
 	height: 50px;
@@ -22,4 +33,3 @@
 	font-size: 20px;
 	font-weight: bold;
 }
-
