@@ -4,11 +4,10 @@ var $postBody = $("#post-description");
 var $submitBtn = $("#submit");
 var $postList = $("#post-list");
 var $username = $("#username");
-// var $userCreate = $("#usercreate");
-// var $userSubmit = $("#submituser");
 
-// The API object contains methods for each kind of request we'll make
+// request methods
 var API = {
+  // new post intake
   savePost: function(post) {
     return $.ajax({
       headers: {
@@ -19,18 +18,21 @@ var API = {
       data: JSON.stringify(post)
     });
   },
+  //method to pull from db
   getPosts: function() {
     return $.ajax({
       url: "api/posts",
       type: "GET"
     });
   },
+  //delete
   deletePost: function(id) {
     return $.ajax({
       url: "api/posts/" + id,
       type: "DELETE"
     });
   },
+  //user intake
   saveUser: function(user) {
     return $.ajax({
       headers: {
@@ -41,6 +43,7 @@ var API = {
       data: JSON.stringify(user)
     });
   },
+  //pulls users from db
   getUsers: function() {
     return $.ajax({
       url: "api/users",
@@ -49,7 +52,7 @@ var API = {
   }
 };
 
-// refreshExamples gets new examples from the db and repopulates the list
+// pulls new posts from db, repopulates feed on refresh
 var refreshPosts = function() {
   API.getPosts().then(function(data) {
     var $posts = data.map(function(post) {
@@ -64,8 +67,9 @@ var refreshPosts = function() {
         })
         .append($link);
 
+      //flag button
       var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
+        .addClass("btn btn-outline-danger float-right flag")
         .text("ｘ");
 
       $list.append($button);

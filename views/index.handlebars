@@ -21,6 +21,9 @@
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
+        </div>
+        <div class="row">
+        
         <h3 class="clearfix">Examples:</h3>
         <ul id="post-list" class="list-group">
           {{#each Post}}
@@ -28,7 +31,7 @@
             <a href="example/{{this.UserId}}">{{this.name}}</a>
             <h5>{{this.title}}</h5>
             <p>{{this.body}}</p>
-            <button class="btn btn-danger float-right flag">
+            <button class="btn btn-outline-danger float-right flag">
               {{!-- insert flag icon here --}}
               </button>
           </li>
