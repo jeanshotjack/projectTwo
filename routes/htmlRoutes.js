@@ -1,5 +1,6 @@
 var db = require("../models");
 var crypto = require("crypto");
+
 module.exports = function(app) {
   app.get("/", function(req, res) {
     db.Post.findAll({}).then(function(dbPost) {
@@ -29,19 +30,25 @@ module.exports = function(app) {
       db.account
         .findAll({ where: { username: userInfo.username } })
         .then(function(username) {
+          // res.render("login", {
+          //   username: userInfo.username
+          // });
+          console.log(userInfo.password);
           console.log(username);
-          if (err) {
-            res.render("login", {
-              username: userInfo.username
-            });
-          }
-
-          if (user) {
+          if (username.length > 0) {
+            console.log(username[0].salt);
             var hash = crypto
-              .pbkdf2Sync(userInfo.password, user.salt, 10000, 64, "sha512")
+              .pbkdf2Sync(
+                userInfo.password,
+                username[0].salt,
+                10000,
+                64,
+                "sha512"
+              )
               .toString("hex");
-            if (hash === user.password) {
-              req.session.user = user;
+            if (hash === username[0].password) {
+              // req.session.username = username[0];
+              // sessionStorage.setItem("user", username[0]);
               console.log("Log in Successful");
               res.redirect("/");
             } else {
@@ -53,15 +60,11 @@ module.exports = function(app) {
             }
           } else {
             console.log("Log in Failed");
-            res.render("login", {
-              msg: "User Does Not Exist",
-              type: "error",
-              username: userInfo.username
-            });
           }
         });
     }
   });
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////
   app.post("/createaccount", function(req, res) {
     console.log(req.body);
     var userInfo = req.body;
@@ -110,7 +113,7 @@ module.exports = function(app) {
             db.account.create(newUser).then(function(user) {
               console.log("creating account");
               console.log("success");
-              res.render("index");
+              res.render("login");
             });
           }
         });

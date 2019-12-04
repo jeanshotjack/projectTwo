@@ -2,6 +2,7 @@ require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
 var db = require("./models");
+var session = require("express-session");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -19,7 +20,7 @@ app.engine(
   })
 );
 app.set("view engine", "handlebars");
-
+app.set("trust proxy", 1);
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
