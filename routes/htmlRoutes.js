@@ -1,6 +1,6 @@
 var db = require("../models");
 var crypto = require("crypto");
-
+var sessionstorage = require("sessionstorage");
 module.exports = function(app) {
   app.get("/", function(req, res) {
     db.Post.findAll({}).then(function(dbPost) {
@@ -48,7 +48,8 @@ module.exports = function(app) {
               .toString("hex");
             if (hash === username[0].password) {
               // req.session.username = username[0];
-              // sessionStorage.setItem("user", username[0]);
+              sessionstorage.setItem("user", username[0]);
+              console.log(sessionstorage.getItem("user"));
               console.log("Log in Successful");
               res.redirect("/");
             } else {
