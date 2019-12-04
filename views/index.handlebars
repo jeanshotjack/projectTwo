@@ -5,13 +5,7 @@
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
         <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="usercreate">Create User</label>
-            <input type="text" id="usercreate" class="form-control" aria-describedby="usercreate" placeholder="Create User">
-          </div>
-          <button id="submituser" class="btn btn-primary float-right">Submit</button>
-        </form>
+        
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
             <label for="username">Username</label>
@@ -27,6 +21,9 @@
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
+        </div>
+        <div class="row">
+        
         <h3 class="clearfix">Examples:</h3>
         <ul id="post-list" class="list-group">
           {{#each Post}}
@@ -34,7 +31,9 @@
             <a href="example/{{this.UserId}}">{{this.name}}</a>
             <h5>{{this.title}}</h5>
             <p>{{this.body}}</p>
-            <button class="btn btn-danger float-right delete">ｘ</button>
+            <button class="btn btn-outline-danger float-right flag">
+              {{!-- insert flag icon here --}}
+              </button>
           </li>
           {{/each}}
         </ul>
