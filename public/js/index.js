@@ -4,8 +4,8 @@ var $postBody = $("#post-description");
 var $submitBtn = $("#submit");
 var $postList = $("#post-list");
 var $username = $("#username");
-var $userCreate = $("#usercreate");
-var $userSubmit = $("#submituser");
+// var $userCreate = $("#usercreate");
+// var $userSubmit = $("#submituser");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -78,22 +78,6 @@ var refreshPosts = function() {
   });
 };
 
-var userCreation = function(event) {
-  event.preventDefault();
-
-  var newUser = {
-    name: $userCreate
-  };
-
-  if (!newUser.name) {
-    alert("you must enter a user");
-    return;
-  }
-
-  API.saveUser(newUser);
-
-  $userCreate.val("");
-};
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
 var handleFormSubmit = function(event) {
@@ -121,17 +105,17 @@ var handleFormSubmit = function(event) {
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
 // Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
+// var handleDeleteBtnClick = function() {
+//   var idToDelete = $(this)
+//     .parent()
+//     .attr("data-id");
 
-  API.deletePost(idToDelete).then(function() {
-    refreshPosts();
-  });
-};
+//   API.deletePost(idToDelete).then(function() {
+//     refreshPosts();
+//   });
+// };
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
-$postList.on("click", ".delete", handleDeleteBtnClick);
-$userSubmit.on("click", userCreation);
+// $postList.on("click", ".delete", handleDeleteBtnClick);
+// here there should be a call to a flag function probably
