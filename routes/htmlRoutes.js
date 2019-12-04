@@ -16,10 +16,10 @@ module.exports = function(app) {
       });
     });
   });
-
-  app.post("/login", function(req, res) {
-    var userInfo = req.body;
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  app.post("/signin", function(req, res) {
     console.log("Posting");
+    var userInfo = req.body;
     if (!userInfo.username || !userInfo.password) {
       console.log("Fill in all fields");
       res.render("login", {
@@ -54,7 +54,7 @@ module.exports = function(app) {
           } else {
             console.log("Log in Failed");
             res.render("login", {
-              message: "User Does Not Exist",
+              msg: "User Does Not Exist",
               type: "error",
               username: userInfo.username
             });
@@ -89,8 +89,6 @@ module.exports = function(app) {
           }
         })
         .then(function(user) {
-          console.log(user);
-          console.log(user.length);
           if (user.length === 1) {
             console.log("User already exists");
             res.render("signup");
@@ -112,7 +110,7 @@ module.exports = function(app) {
             db.account.create(newUser).then(function(user) {
               console.log("creating account");
               console.log("success");
-              res.render("login");
+              res.render("index");
             });
           }
         });
