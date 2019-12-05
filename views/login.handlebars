@@ -2,21 +2,40 @@
 
 <head>
   <title>Login</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
 <body class="login_body">
-  <div class="login_div">
-    <p style="color:green;"></p>
-    <h1>Login</h1>
-    <form method = "POST" action = "/signin"> 
-      <input id="username_input" type="text" placeholder="Username" name="username" />
-      <br />
-      <input id="password_input" type="password" placeholder="Password" name="password" />
-      <br /><br />
-      <input class="login_buttons" id="login_button" type="submit" value="Login"/>
-      <a href="/createaccount">Create account</a>
-      <br />
-    </form>
+  <div class="card text-center">
+    <div class="card-header">
+      Featured
+    </div>
+    <div class="card-body">
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col col-lg-2">
+          </div>
+          <div class="col-md-auto">
+            <h1>Login</h1>
+            <form method="POST" action="/signin">
+              <input id="username_input" type="text" class="form-control" placeholder="Username" name="username" />
+              <br />
+              <input id="password_input" class="form-control" type="password" placeholder="Password" name="password" />
+              <br /><br />
+              <button class="btn btn-primary" id="login_button" type="submit" value="Login">Login</button>
+              <a class="btn btn-primary" href="/createaccount">Create account</a>
+              <br />
+            </form>
+          </div>
+          <div class="col col-lg-2">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+      2 days ago
+    </div>
   </div>
 </body>
 </html>
