@@ -1,48 +1,102 @@
-
 <div id="home">
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
         <h2>This is our Home Page!</h2>
-        
+
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
             <label for="username">Username</label>
             <input type="text" id="username" class="form-control" aria-describedby="username" placeholder="Username">
           </div>
           <div class="form-group"></div>
-            <label for="post-text">Post Name</label>
-            <input type="text" id="post-text" class="form-control" aria-describedby="post-text" placeholder="Enter Your Headline">
-          </div>
-          <div class="form-group">
-            <label for="post-description">Post Body</label>
-            <textarea class="form-control" id="post-description" aria-describedby="post-description" placeholder="Enter Your Personal"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        </div>
-        <div class="row">
-        
-        <h3 class="clearfix">Examples:</h3>
-        <ul id="post-list" class="list-group">
-          {{#each Post}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.UserId}}">{{this.name}}</a>
-            <h5>{{this.title}}</h5>
-            <p>{{this.body}}</p>
-            <button class="btn btn-outline-danger float-right flag">
-              {{!-- insert flag icon here --}}
-              </button>
-          </li>
-          {{/each}}
-        </ul>
+          <label for="post-text">Post Name</label>
+          <input type="text" id="post-text" class="form-control" aria-describedby="post-text"
+            placeholder="Enter Your Headline">
       </div>
+      <div class="form-group">
+        <label for="post-description">Post Body</label>
+        <textarea class="form-control" id="post-description" aria-describedby="post-description"
+          placeholder="Enter Your Personal"></textarea>
+      </div>
+      <button id="submit" class="btn btn-primary float-right">Submit</button>
+      </form>
+    </div>
+    <div class="row">
+
+      <h3 class="clearfix">Examples:</h3>
+      <ul id="post-list" class="list-group">
+        {{#each Post}}
+        <li data-id="{{this.id}}" class="list-group-item">
+          <a href="example/{{this.UserId}}">{{this.name}}</a>
+          <h5>{{this.title}}</h5>
+          <p>{{this.body}}</p>
+          <button class="btn btn-outline-danger float-right flag">
+            {{!-- insert flag icon here --}}
+          </button>
+        </li>
+        {{/each}}
+      </ul>
     </div>
   </div>
+</div>
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+  integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<div class="row">
+  <div class="modal fade" id="viewOtherBioModal" tabindex="-1" role="dialog" aria-labelledby="viewOtherBioModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="viewOtherBioModalLabel">SELECTEDUSER's Bio</h4>
+        </div>
+        <div class="modal-body">
+          <p>DISPLAYUSERHANDLE name: DataTypes.STRING,</p>
+          <p>DISPLAYUSERPRONOUNS pronouns: DataTypes.STRING,</p>
+          <p>DISPLAYUSERDOB DOB: DataTypes.DATEONLY,</p>
+          <p>DISPLAYUSERINSTAGRAMHANDLE insta: DataTypes.STRING,</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="modal fade" id="newPostModal" tabindex="-1" role="dialog" aria-labelledby="newPostModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="newPostModalLabel">Fresh Post</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="recipient-name" class="control-label">Context:</label>
+              <input type="text" class="form-control" id="recipient-name">
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="control-label">Share your beautiful
+                thoughts:</label>
+              <textarea class="form-control" id="message-text"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel New Post</button>
+          <button type="button" class="btn btn-primary">Share your thoughts with the
+            community!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
