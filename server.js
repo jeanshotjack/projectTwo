@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 require("dotenv").config();
+
 var express = require("express");
 var exphbs = require("express-handlebars");
 var db = require("./models");
-
+var session = require("express-session");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
@@ -10,6 +12,14 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
+app.use(
+  session({
+    secret: "Noxramus",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+  })
+);
 
 // Handlebars
 app.engine(
@@ -19,7 +29,7 @@ app.engine(
   })
 );
 app.set("view engine", "handlebars");
-
+app.set("trust proxy", 1);
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
