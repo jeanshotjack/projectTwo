@@ -1,5 +1,6 @@
 var db = require("../models");
 var crypto = require("crypto");
+var sessionstorage = require("sessionstorage");
 module.exports = function(app) {
   app.get("/", function(req, res) {
     db.Post.findAll({}).then(function(dbPost) {
@@ -10,56 +11,66 @@ module.exports = function(app) {
     });
   });
   app.get("/posts/:id", function(req, res) {
-    db.Post.findOne({ where: { id: req.params.id } }).then(function(dbPost) {
+    db.Post.findAll({ where: { id: req.params.id } }).then(function(dbPost) {
       res.render("Post", {
         Post: dbPost
       });
     });
   });
-
-  app.post("/login", function(req, res) {
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  app.post("/signin", function(req, res) {
+    console.log("Posting");
     var userInfo = req.body;
-
     if (!userInfo.username || !userInfo.password) {
+      console.log("Fill in all fields");
       res.render("login", {
-        message: "Please Fill Out All Fields",
-        type: "error",
         username: userInfo.username
       });
     } else {
-      db.User.findOne({ username: userInfo.username }, function(err, user) {
-        if (err) {
-          res.render("login", {
-            message: "Database Error",
-            type: "error",
-            username: userInfo.username
-          });
-        }
-
-        if (user) {
-          var hash = crypto
-            .pbkdf2Sync(userInfo.password, user.salt, 10000, 64, "sha512")
-            .toString("hex");
-          if (hash === user.password) {
-            req.session.user = user;
-            res.redirect("/");
+      db.account
+        .findAll({ where: { username: userInfo.username } })
+        .then(function(username) {
+          // res.render("login", {
+          //   username: userInfo.username
+          // });
+          if (username.length > 0) {
+            var hash = crypto
+              .pbkdf2Sync(
+                userInfo.password,
+                username[0].salt,
+                10000,
+                64,
+                "sha512"
+              )
+              .toString("hex");
+            if (hash === username[0].password) {
+              // req.session.username = username[0];
+              sessionstorage.setItem("user", username[0]);
+              // console.log("Log in Successful");
+              // console.log(sessionstorage.getItem("user"));
+              // res.redirect("/");
+              if (req.session.user) {
+                req.session.user++;
+                res.end();
+              } else {
+                res.redirect("/");
+                req.session.user = 1;
+                res.end("welcome to the session demo. refresh!");
+              }
+            } else {
+              res.render("login", {
+                message: "Invalid Password",
+                type: "error",
+                username: userInfo.username
+              });
+            }
           } else {
-            res.render("login", {
-              message: "Invalid Password",
-              type: "error",
-              username: userInfo.username
-            });
+            console.log("Log in Failed");
           }
-        } else {
-          res.render("login", {
-            message: "User Does Not Exist",
-            type: "error",
-            username: userInfo.username
-          });
-        }
-      });
+        });
     }
   });
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////
   app.post("/createaccount", function(req, res) {
     console.log(req.body);
     var userInfo = req.body;
@@ -76,11 +87,7 @@ module.exports = function(app) {
       });
     } else if (userInfo.password !== userInfo.confirm_password) {
       console.log("passwords don't match.");
-      res.render("signup", {
-        message: "Passwords do not match",
-        type: "error",
-        username: userInfo.username
-      });
+      res.render("signup");
     } else {
       console.log("Checking if user exists...");
       db.account
@@ -91,14 +98,9 @@ module.exports = function(app) {
           }
         })
         .then(function(user) {
-          console.log(user);
-
-          if (user.length < 0) {
+          if (user.length === 1) {
             console.log("User already exists");
-            res.render("signup", {
-              message: "Username is Taken",
-              type: "error"
-            });
+            res.render("signup");
           } else {
             console.log("encrypting...");
             var salt = crypto.randomBytes(64).toString("hex");
@@ -117,10 +119,7 @@ module.exports = function(app) {
             db.account.create(newUser).then(function(user) {
               console.log("creating account");
               console.log("success");
-              res.render("login", {
-                message: "Account Created. Please Login.",
-                type: "success"
-              });
+              res.render("login");
             });
           }
         });
