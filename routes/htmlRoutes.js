@@ -3,12 +3,12 @@ var crypto = require("crypto");
 var sessionstorage = require("sessionstorage");
 module.exports = function(app) {
   app.get("/", function(req, res) {
-    db.Post.findAll({}).then(function(dbPost) {
-      res.render("index", {
-        msg: "Welcome!",
-        Post: dbPost
-      });
-    });
+    if (sessionstorage.getItem("user")) {
+      console.log("success");
+      res.json(sessionstorage.getItem("user"));
+    } else {
+      res.redirect("/login");
+    }
   });
   app.get("/posts/:id", function(req, res) {
     db.Post.findAll({ where: { id: req.params.id } }).then(function(dbPost) {
@@ -49,14 +49,10 @@ module.exports = function(app) {
               // console.log("Log in Successful");
               // console.log(sessionstorage.getItem("user"));
               // res.redirect("/");
-              if (req.session.user) {
-                req.session.user++;
-                res.end();
-              } else {
-                res.redirect("/");
-                req.session.user = 1;
-                res.end("welcome to the session demo. refresh!");
-              }
+              var user = sessionstorage.getItem("user");
+              console.log(user);
+              res.redirect("/");
+              res.redirect("/");
             } else {
               res.render("login", {
                 message: "Invalid Password",
@@ -130,6 +126,10 @@ module.exports = function(app) {
   });
   app.get("/login", function(req, res) {
     res.render("login");
+  });
+  app.get("/logout", function(req, res) {
+    sessionstorage.clear();
+    res.redirect("/login");
   });
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
