@@ -11,7 +11,11 @@ module.exports = function(sequelize, Sequelize) {
     salt: {
       type: Sequelize.STRING,
       allowNull: false
-    }
+    },
+    pronouns: Sequelize.STRING,
+    email: Sequelize.STRING,
+    DOB: Sequelize.DATEONLY,
+    insta: Sequelize.STRING
   });
   return account;
 };
