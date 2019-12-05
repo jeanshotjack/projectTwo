@@ -9,31 +9,31 @@ CREATE DATABASE noxdb;
 USE noxdb;
 
 INSERT INTO Users (name, password, insta, pronouns, email, DOB)
-VALUES ("Levin Schimmer", "password!", "linkeddy-link.com", "pronouns", "Valentina_Brekke41@gmail.com", "1888/12/03");
+VALUES ("Levin Schimmer", "password!", "@instahandle", "she/her", "Valentina_Brekke41@gmail.com", "1888/12/03");
 
 INSERT INTO Users (name, password, insta, pronouns, email, DOB)
-VALUES ("Ashlee Schowalter", "password!", "linkeddy-link.com", "pronouns", "Fanny_Miller@hotmail.com", "1889/12/03");
+VALUES ("Ashlee Schowalter", "password!", "@instahandle", "they/them", "Fanny_Miller@hotmail.com", "1889/12/03");
 
 INSERT INTO Users (name, password, insta, pronouns, email, DOB)
-VALUES ("Marc Mertz", "password!", "linkeddy-link.com", "pronouns", "Boyd58@gmail.com", "12/03/1890");
+VALUES ("Marc Mertz", "password!", "@instahandle", "name only", "Boyd58@gmail.com", "12/03/1890");
 
 INSERT INTO Users (name, password, insta, pronouns, email, DOB)
-VALUES ("Ettie Langosh", "password!", "linkeddy-link.com", "pronouns", "Jake_Satterfield46@hotmail.com", "1891/03/12");
+VALUES ("Ettie Langosh", "password!", "@instahandle", "she/her", "Jake_Satterfield46@hotmail.com", "1891/03/12");
 
 INSERT INTO Users (name, password, insta, pronouns, email, DOB)
-VALUES ("Myles Labadie", "password!", "linkeddy-link.com", "pronouns", "Nicolette_Ortiz98@yahoo.com", "1992/12/03");
+VALUES ("Myles Labadie", "password!", "@instahandle", "he/him", "Nicolette_Ortiz98@yahoo.com", "1992/12/03");
 
 INSERT INTO Users (name, password, insta, pronouns, email, DOB)
-VALUES ("Gage Cormier", "password!", "linkeddy-link.com", "pronouns", "Francis54@gmail.com", "1993/12/03");
+VALUES ("Gage Cormier", "password!", "@instahandle", "they/them", "Francis54@gmail.com", "1993/12/03");
 
 INSERT INTO Users (name, password, insta, pronouns, email, DOB)
-VALUES ("Franz Kovacek DDS", "password!", "linkeddy-link.com", "pronouns", "Pablo.DuBuque@hotmail.com", "1994/03/24");
+VALUES ("Franz Kovacek DDS", "password!", "@instahandle", "they/them", "Pablo.DuBuque@hotmail.com", "1994/03/24");
 
 INSERT INTO Users (name, password, insta, pronouns, email, DOB)
-VALUES ("Walton Kautzer", "password!", "linkeddy-link.com", "pronouns", "Lance_Armstrong9@hotmail.com", "1995/04/12");
+VALUES ("Walton Kautzer", "password!", "@instahandle", "they/them", "Lance_Armstrong9@hotmail.com", "1995/04/12");
 
 INSERT INTO Users (name, password, insta, pronouns, email, DOB)
-VALUES ("Miss Maryam Cormier", "password!", "linkeddy-link.com", "pronouns", "Bradly28@yahoo.com", "1977/05/12");
+VALUES ("Miss Maryam Cormier", "password!", "@instahandle", "ze/zim", "Bradly28@yahoo.com", "1977/05/12");
 
 INSERT INTO Users (name, password, insta, pronouns, email, DOB)
-VALUES ("Brook Abshire", "password!", "linkeddy-link.com", "pronouns", "Wilber.Gibson@gmail.com", "1991/02/23");
+VALUES ("Brook Abshire", "password!", "@instahandle", "they/them", "Wilber.Gibson@gmail.com", "1991/02/23");
