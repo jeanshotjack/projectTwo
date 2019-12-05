@@ -1,21 +1,21 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function(sequelize, Sequelize) {
   var Post = sequelize.define("Post", {
     title: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
       validate: {
         len: [1, 70]
       }
     },
     body: {
-      type: DataTypes.TEXT,
+      type: Sequelize.TEXT,
       allowNull: false,
       len: [1, 200]
     }
   });
 
   Post.associate = function(models) {
-    Post.belongsTo(models.User, {
+    Post.belongsTo(models.account, {
       foreignKey: {
         allowNull: false
       }
