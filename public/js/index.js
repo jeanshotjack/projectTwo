@@ -64,7 +64,6 @@ var API = {
       data: user
     }).then(getUsers);
   }
-  }
 };
 
 // pulls new posts from db, repopulates feed on refresh
@@ -154,7 +153,7 @@ var handleFormSubmit = function(event) {
   $postBody.val("");
   $username.val("");
 
-  $("newPostModal").hide();
+  $("#newPostModal").hide();
 };
 
 // Add event listeners to the submit and delete buttons
