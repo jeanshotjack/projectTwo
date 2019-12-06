@@ -39,23 +39,9 @@
     <div class="card-footer text-muted errmsg" {{#unless passwordError}}style="display:none"{{/unless}}>
       Password is Invalid
     </div>
+    <div class="card-footer text-muted errmsg" {{#unless unfilledError}}style="display:none"{{/unless}}>
+      Fill Out All Fields
+    </div>
   </div>
-<script>
-$(document).ready(function() {
-  $("#login_button").on("click", function(event){
-    event.preventDefault();
 
-    var userLogin = {
-      username: $("#username_input").val(),
-      password: $("#password_input").val()
-    }
-
-     if (!userLogin.username || !userLogin.password) {
-      $(".errmsg").text("Please enter both a username and password").show();
-     } else {
-       $("#login_form").submit();
-     }
-  })
-})
-</script>
 {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}

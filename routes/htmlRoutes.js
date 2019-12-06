@@ -24,11 +24,8 @@ module.exports = function(app) {
     console.log("Posting");
     var userInfo = req.body;
     if (!userInfo.username || !userInfo.password) {
-      res.render("signup");
       console.log("Fill in all fields");
-      res.render("login", {
-        username: userInfo.username
-      });
+      res.render("login", { unfilledError: true });
     } else {
       db.account
         .findAll({ where: { username: userInfo.username } })
@@ -73,15 +70,12 @@ module.exports = function(app) {
     if (
       !userInfo.username ||
       !userInfo.password ||
-      !userInfo.confirm_password
+      !userInfo.confirm_password ||
+      !userSignUp.insta ||
+      !userSignUp.DOB
     ) {
       console.log("All fields weren't filled out");
-      res.render("signup");
-      // $("#myModal").on("show.bs.modal", function (e) {
-      //   if (!data) {
-      //     return e.preventDefault();
-      //   } // stops modal from being shown
-      // });;
+      res.render("signup", { emptyError: true });
     } else if (userInfo.password !== userInfo.confirm_password) {
       console.log("passwords don't match.");
       res.render("signup", { matchError: true });

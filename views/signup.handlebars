@@ -58,13 +58,15 @@
     <div id = "error" class="card-footer text-muted errmsg" {{#unless matchError}}style="display:none"{{/unless}}>
       Passwords do not match
     </div>
+    <div id = "emptyErr" class="card-footer text-muted errmsg" {{#unless emptyError}}style="display:none"{{/unless}}>
+      Please Fill Out all Fields
+    </div>
     </div>
 </body>
-<script>
+{{!-- <script>
     $(document).ready(function() {
   $("#sign_up_button").on("click", function(event){
     event.preventDefault();
-
     var userSignUp = {
       username: $("#create_username_input").val(),
       password: $("#create_password_input").val(),
@@ -72,12 +74,7 @@
       insta: $("#insta").val(),
       DOB: $("#Birthday").val()
     }
-
-     if (!userSignUp.username || !userSignUp.password) {
-      $(".errmsg").text("Please enter both a username and password").show();
-     } else {
-       $("#signinform").submit();
      }
   })
 })
-</script>
+</script> --}}
