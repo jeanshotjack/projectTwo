@@ -56,6 +56,13 @@ var API = {
       method: "GET",
       url: "/api/users/" + id
     });
+  },
+  updateUser: function(user) {
+    $.ajax({
+      method: "PUT",
+      url: "/api/users",
+      data: user
+    }).then(getUsers);
   }
 };
 
@@ -65,8 +72,8 @@ var refreshPosts = function() {
     $postList.empty();
 
     // var $posts = data.map(function(post) {
-    for(var i = 0; i < data.length; i++) {
-      var $cardDiv = $("<div>").addClass("card");
+    for (var i = 0; i < data.length; i++) {
+      var $cardDiv = $("<div>").addClass("card mb-4");
 
       var $title = $("<h3>")
         .html(data[i].title)
@@ -146,20 +153,8 @@ var handleFormSubmit = function(event) {
   $postBody.val("");
   $username.val("");
 
-  $("newPostModal").hide();
+  $("#newPostModal").hide();
 };
-
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-// var handleDeleteBtnClick = function() {
-//   var idToDelete = $(this)
-//     .parent()
-//     .attr("data-id");
-
-//   API.deletePost(idToDelete).then(function() {
-//     refreshPosts();
-//   });
-// };
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);

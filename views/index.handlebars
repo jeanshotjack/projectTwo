@@ -6,7 +6,7 @@
     <div class="card">
       <div class="card-body">
         {{!-- This user's username --}}
-        <h6 class="card-subtitle mb-2">{{user.username}}</h6>
+        <h6 class="card-subtitle mb-2">@{{user.username}}</h6>
         <a href="/">
           <h1 class="card-title" id="sidebar_logo_text">NOX</h1>
         </a>
@@ -71,7 +71,7 @@
               placeholder="Enter Your Personal"></textarea>
           </div>
 
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
+          {{!-- <button id="submit" class="btn btn-primary float-right">Submit</button> --}}
 
         </form>
         {{!-- End form --}}
@@ -84,7 +84,7 @@
 
       <div class="col col-12">
 
-        
+
 
         {{!-- button to trigger modal with this user's bio --}}
         {{!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewOtherBioModal"
@@ -94,18 +94,18 @@
 
 
         <div id="post-list">
-        {{#each Post}}
-        <div class="card mb-4">
-          <div class="card-body" data-id="{{this.id}}">
-            <i id="flag" class="material-icons float-right">outlined_flag</i>
-            <h3 class="card-title" data-title="{{this.title}}">{{this.title}}</h3>
-            <p class="card-text" data-body="{{this.body}}">{{this.body}}</p>
-            <button type="button" class="btn btn-link float-right" data-toggle="modal" data-target="#viewOtherBioModal"
-              data-whatever="{{this.username}}">{{this.username}}</button>
-            <h6 class="card-subtitle mb-2 text-muted">Date/TimeStamp?</h6>
+          {{#each Post}}
+          <div class="card mb-4">
+            <div class="card-body" data-id="{{this.id}}">
+              <i id="flag" class="material-icons float-right">outlined_flag</i>
+              <h3 class="card-title" data-title="{{this.title}}">{{this.title}}</h3>
+              <p class="card-text" data-body="{{this.body}}">{{this.body}}</p>
+              <button type="button" class="btn btn-link float-right" data-toggle="modal"
+                data-target="#viewOtherBioModal" data-whatever="{{this.accountId}}">{{this.accountId}}</button>
+              <h6 class="card-subtitle mb-2 text-muted">Date/TimeStamp?</h6>
+            </div>
           </div>
-        </div>
-        {{/each}}
+          {{/each}}
         </div>
 
         <div class="card mb-4">
@@ -132,7 +132,7 @@
           </div>
         </div>
 
-                <div class="card mb-4">
+        <div class="card mb-4">
           <div class="card-body">
             <i class="material-icons float-right">outlined_flag</i>
             <h3 class="card-title">This is the title</h3>
@@ -168,13 +168,12 @@
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
               aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="viewOtherBioModalLabel">SELECTEDUSER's Bio</h4>
+          <h4 class="modal-title" id="viewOtherBioModalLabel">@{{this.username}}'s Bio</h4>
         </div>
         <div class="modal-body">
-          <p>DISPLAYUSERHANDLE name: DataTypes.STRING,</p>
-          <p>DISPLAYUSERPRONOUNS pronouns: DataTypes.STRING,</p>
-          <p>DISPLAYUSERDOB DOB: DataTypes.DATEONLY,</p>
-          <p>DISPLAYUSERINSTAGRAMHANDLE insta: DataTypes.STRING,</p>
+          <p>@{{this.username}}</p>
+          <p>{{this.pronouns}}</p>
+          <p>{{this.insta}}</p>
         </div>
       </div>
     </div>
@@ -185,12 +184,30 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-              aria-hidden="true">&times;</span></button>
+
           <h4 class="modal-title" id="username">Fresh Post</h4>
         </div>
         <div class="modal-body">
-          <form>
+          <form action="POST">
+
+
+            <div class="form-group">
+              <label for="username">Test Username</label>
+              <input type="text" id="username" class="form-control" aria-describedby="username" placeholder="Username">
+            </div>
+
+            <div class="form-group">
+              <label for="post-text">Test Post Name</label>
+              <input type="text" id="post-text" class="form-control" aria-describedby="post-text"
+                placeholder="Enter Your Headline">
+            </div>
+
+            <div class="form-group">
+              <label for="post-description">Test Post Body</label>
+              <textarea class="form-control" id="post-description" aria-describedby="post-description"
+                placeholder="Enter Your Personal"></textarea>
+            </div>
+
             <div class="form-group">
               <label for="post-text" class="control-label">Context:</label>
               <input type="text" class="form-control" id="post-text">
@@ -200,12 +217,13 @@
                 thoughts:</label>
               <textarea class="form-control" id="post-description"></textarea>
             </div>
-          </form>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" id="submit">Post</button>
+          <button type="button" class="btn btn-primary" id="submit" data-dismiss="modal">Post</button>
         </div>
+        </form>
       </div>
     </div>
   </div>
