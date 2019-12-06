@@ -115,7 +115,7 @@ module.exports = function(app) {
             db.account.create(newUser).then(function(user) {
               console.log("creating account");
               console.log("success");
-              res.render("login");
+              res.render("login", { signedUp: true });
             });
           }
         });
