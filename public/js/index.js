@@ -137,7 +137,7 @@ var handleFormSubmit = function(event) {
   var newPost = {
     title: $postName.val().trim(),
     body: $postBody.val().trim(),
-    accountId: $username.val().trim()
+    accountId: user.id
   };
 
   if (!(newPost.title && newPost.body && newPost.accountId)) {
