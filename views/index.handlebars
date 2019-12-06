@@ -6,7 +6,7 @@
     <div class="card">
       <div class="card-body">
         {{!-- This user's username --}}
-        <h6 class="card-subtitle mb-2">{{user.username}}</h6>
+        <h6 class="card-subtitle mb-2">@{{user.username}}</h6>
         <a href="/">
           <h1 class="card-title" id="sidebar_logo_text">NOX</h1>
         </a>
@@ -101,7 +101,7 @@
             <h3 class="card-title" data-title="{{this.title}}">{{this.title}}</h3>
             <p class="card-text" data-body="{{this.body}}">{{this.body}}</p>
             <button type="button" class="btn btn-link float-right" data-toggle="modal" data-target="#viewOtherBioModal"
-              data-whatever="{{this.username}}">{{this.username}}</button>
+              data-whatever="{{this.accountId}}">{{this.accountId}}</button>
             <h6 class="card-subtitle mb-2 text-muted">Date/TimeStamp?</h6>
           </div>
         </div>
