@@ -34,14 +34,15 @@
       </div>
     </div>
     <div class="card-footer text-muted errmsg" {{#unless userError}}style="display:none"{{/unless}}>
-      Username is Invalid
+       <strong><font color="red" size="4">Username is Invalid </font></strong>
     </div>
     <div class="card-footer text-muted errmsg" {{#unless passwordError}}style="display:none"{{/unless}}>
-      Password is Invalid
+      <strong><font color="red"size="4">Password is Invalid</font></strong>
     </div>
     <div class="card-footer text-muted errmsg" {{#unless unfilledError}}style="display:none"{{/unless}}>
-      Fill Out All Fields
+       <strong><font color="red"size="4">Fill Out All Fields</font></strong>
+    </div>
+        <div class="card-footer text-muted errmsg" {{#unless signedUp}}style="display:none"{{/unless}}>
+       <strong><font color="green"size="4">You Successfully Signed Up!</font></strong>
     </div>
   </div>
-
-{{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
