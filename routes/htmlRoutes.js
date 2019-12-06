@@ -1,11 +1,13 @@
 var db = require("../models");
 var crypto = require("crypto");
 var sessionstorage = require("sessionstorage");
+
 module.exports = function(app) {
   app.get("/", function(req, res) {
     if (sessionstorage.getItem("user")) {
+      res.render("index");
       console.log("success");
-      res.json(sessionstorage.getItem("user"));
+      // res.json(sessionstorage.getItem("user"));
     } else {
       res.redirect("/login");
     }
@@ -54,14 +56,11 @@ module.exports = function(app) {
               res.redirect("/");
               res.redirect("/");
             } else {
-              res.render("login", {
-                message: "Invalid Password",
-                type: "error",
-                username: userInfo.username
-              });
+              res.render("login");
             }
           } else {
             console.log("Log in Failed");
+            $("#error").text("Invalid Info");
           }
         });
     }
@@ -77,10 +76,7 @@ module.exports = function(app) {
       !userInfo.confirm_password
     ) {
       console.log("All fields weren't filled out");
-      res.render("signup", {
-        message: "Please fill out all fields",
-        type: "error"
-      });
+      res.render("signup");
     } else if (userInfo.password !== userInfo.confirm_password) {
       console.log("passwords don't match.");
       res.render("signup");
