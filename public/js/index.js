@@ -63,29 +63,51 @@ var API = {
 var refreshPosts = function() {
   API.getPosts().then(function(data) {
     var $posts = data.map(function(post) {
-      var $link = $("<a>")
-        .text(post.text)
-        .attr("href", "/post/" + post.id);
-
-      var $list = $("<li>")
+      var $title = $("<h3>")
+        .text(post.title)
         .attr({
-          class: "list-group-item",
+          class: "card-title",
+          "data-title": post.title
+        });
+
+      var $text = $("<p>")
+        .text(post.body)
+        .attr({
+          class: "card-text",
+          "data-body": post.body
+        });
+
+      var $icon = $("<i>").attr({
+        class: "material-icons float-right flag",
+        text: "outlined-flag"
+      });
+
+      var $userButton = $("<button>").attr({
+        type: "button",
+        class: "btn btn-link float-right",
+        "data-toggle": "modal",
+        "data-target": "#viewOtherBioModal",
+        "data-whatever": post.accountId
+      });
+
+      var $card = $("<div>")
+        .attr({
+          class: "card-body",
           "data-id": post.id
         })
-        .append($link);
+        .append($title);
 
-      //flag button
-      var $button = $("<button>")
-        .addClass("btn btn-outline-danger float-right flag")
-        .text("ｘ");
+      $card.append($icon);
 
-      $list.append($button);
+      $card.append($text);
 
-      return $list;
+      $card.append($userButton);
+
+      return $card;
     });
 
     $postList.empty();
-    $postList.append($posts);
+    $postList.prepend($posts);
   });
 };
 
