@@ -81,7 +81,7 @@ var refreshPosts = function() {
 
       $list.append($button);
 
-      return $li;
+      return $list;
     });
 
     $postList.empty();
@@ -97,10 +97,10 @@ var handleFormSubmit = function(event) {
   var newPost = {
     title: $postName.val().trim(),
     body: $postBody.val().trim(),
-    UserId: $username.val().trim()
+    accountId: $username.val().trim()
   };
 
-  if (!(newPost.title && newPost.body && newPost.UserId)) {
+  if (!(newPost.title && newPost.body && newPost.accountId)) {
     alert("You must enter an example text, description, and user!");
     return;
   }
