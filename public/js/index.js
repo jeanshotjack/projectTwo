@@ -62,32 +62,65 @@ var API = {
 // pulls new posts from db, repopulates feed on refresh
 var refreshPosts = function() {
   API.getPosts().then(function(data) {
-    var $posts = data.map(function(post) {
-      var $link = $("<a>")
-        .text(post.text)
-        .attr("href", "/post/" + post.id);
-
-      var $list = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": post.id
-        })
-        .append($link);
-
-      //flag button
-      var $button = $("<button>")
-        .addClass("btn btn-outline-danger float-right flag")
-        .text("ｘ");
-
-      $list.append($button);
-
-      return $list;
-    });
-
     $postList.empty();
-    $postList.append($posts);
+
+    // var $posts = data.map(function(post) {
+    for(var i = 0; i < data.length; i++) {
+      var $cardDiv = $("<div>").addClass("card");
+
+      var $title = $("<h3>")
+        .html(data[i].title)
+        .attr({
+          class: "card-title",
+          "data-title": data[i].title
+        });
+
+      var $text = $("<p>")
+        .html(data[i].body)
+        .attr({
+          class: "card-text",
+          "data-body": data[i].body
+        });
+
+      var $icon = $("<i>").attr({
+        class: "material-icons float-right flag",
+        text: "outlined-flag"
+      });
+
+      var $userButton = $("<button>").attr({
+        type: "button",
+        class: "btn btn-link float-right",
+        "data-toggle": "modal",
+        "data-target": "#viewOtherBioModal",
+        "data-whatever": data[i].accountId
+      });
+
+      var $card = $("<div>")
+        .attr({
+          class: "card-body",
+          "data-id": data[i].id
+        })
+        .append($title);
+
+      $card.append($icon);
+
+      $card.append($text);
+
+      $card.append($userButton);
+
+      $cardDiv.append($card);
+
+      $postList.prepend($cardDiv);
+    }
+
+    //   return $cardDiv;
+    // });
+
+    // console.log($cardDiv);
+    // $postList.prepend($posts);
   });
 };
+refreshPosts();
 
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
@@ -112,6 +145,8 @@ var handleFormSubmit = function(event) {
   $postName.val("");
   $postBody.val("");
   $username.val("");
+
+  $("newPostModal").hide();
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
