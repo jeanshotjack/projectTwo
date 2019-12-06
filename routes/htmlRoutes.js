@@ -72,16 +72,18 @@ module.exports = function(app) {
     if (
       !userInfo.username ||
       !userInfo.password ||
-      !userInfo.confirm_password ||
-      !userSignUp.insta ||
-      !userSignUp.DOB
+      // !userInfo.confirm_password ||
+      !userInfo.insta ||
+      !userInfo.birthday
     ) {
       console.log("All fields weren't filled out");
       res.render("signup", { emptyError: true });
-    } else if (userInfo.password !== userInfo.confirm_password) {
-      console.log("passwords don't match.");
-      res.render("signup", { matchError: true });
-    } else {
+    // } else if (userInfo.password !== userInfo.confirm_password) {
+    //   console.log("passwords don't match.");
+    //   res.render("signup", { matchError: true });
+    // 
+  } 
+    else {
       console.log("Checking if user exists...");
       db.account
         .findAll({

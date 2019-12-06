@@ -50,8 +50,7 @@ var API = {
       type: "GET"
     });
   },
-  getOneUser: function() {
-    var id = $(this).data("UserId");
+  getOneUser: function(id) {
     return $.ajax({
       method: "GET",
       url: "/api/users/" + id
@@ -73,6 +72,7 @@ var refreshPosts = function() {
 
     // var $posts = data.map(function(post) {
     for (var i = 0; i < data.length; i++) {
+      console.log(data);
       var $cardDiv = $("<div>").addClass("card mb-4");
 
       var $title = $("<h3>")
@@ -96,11 +96,11 @@ var refreshPosts = function() {
 
       var $userButton = $("<button>").attr({
         type: "button",
-        class: "btn btn-link float-right",
+        class: "btn btn-link float-right bio",
         "data-toggle": "modal",
         "data-target": "#viewOtherBioModal",
-        "data-whatever": data[i].accountId
-      });
+        "data-id": data[i].account.id
+      }).text(data[i].account.username);
 
       var $card = $("<div>")
         .attr({
@@ -129,6 +129,16 @@ var refreshPosts = function() {
 };
 refreshPosts();
 
+$(document).on("click", ".bio", function() {
+  API.getOneUser($(this).attr("data-id")).then(function(data) {
+    $("#viewOtherBioModalLabel").text("@" + data.username + "'s Bio");
+    $("#bioUser").text("Username: " + data.username);
+    $("#bioPro").text("Pronouns: " + data.pronouns);
+    $("#bioInsta").text("Insta: @" + data.insta);
+    console.log(data);
+  })
+})
+
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
 var handleFormSubmit = function(event) {
@@ -137,7 +147,7 @@ var handleFormSubmit = function(event) {
   var newPost = {
     title: $postName.val().trim(),
     body: $postBody.val().trim(),
-    accountId: user.id
+    accountId: $submitBtn.attr("data-id")
   };
 
   if (!(newPost.title && newPost.body && newPost.accountId)) {
