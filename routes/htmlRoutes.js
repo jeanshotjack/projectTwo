@@ -72,18 +72,28 @@ module.exports = function(app) {
     if (
       !userInfo.username ||
       !userInfo.password ||
+<<<<<<< HEAD
       // !userInfo.confirm_password ||
+=======
+>>>>>>> 185bc0e19801f2e90cf5f0e69d75087100ae4e12
       !userInfo.insta ||
       !userInfo.birthday
     ) {
       console.log("All fields weren't filled out");
       res.render("signup", { emptyError: true });
+<<<<<<< HEAD
     // } else if (userInfo.password !== userInfo.confirm_password) {
     //   console.log("passwords don't match.");
     //   res.render("signup", { matchError: true });
     // 
   } 
     else {
+=======
+      // } else if (userInfo.password !== userInfo.confirm_password) {
+      //   console.log("passwords don't match.");
+      //   res.render("signup", { matchError: true });
+    } else {
+>>>>>>> 185bc0e19801f2e90cf5f0e69d75087100ae4e12
       console.log("Checking if user exists...");
       db.account
         .findAll({
@@ -118,7 +128,7 @@ module.exports = function(app) {
             db.account.create(newUser).then(function(user) {
               console.log("creating account");
               console.log("success");
-              res.render("login");
+              res.render("login", { signedUp: true });
             });
           }
         });
