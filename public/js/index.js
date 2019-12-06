@@ -56,6 +56,14 @@ var API = {
       method: "GET",
       url: "/api/users/" + id
     });
+  },
+  updateUser: function(user) {
+    $.ajax({
+      method: "PUT",
+      url: "/api/users",
+      data: user
+    }).then(getUsers);
+  }
   }
 };
 
