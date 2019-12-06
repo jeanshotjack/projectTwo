@@ -6,14 +6,14 @@
     <div class="card">
       <div class="card-body">
         {{!-- This user's username --}}
-        <h6 class="card-subtitle mb-2">{{this.username}}</h6>
+        <h6 class="card-subtitle mb-2">{{user.username}}</h6>
         <a href="/">
           <h1 class="card-title" id="sidebar_logo_text">NOX</h1>
         </a>
         {{!-- These should be editable on click and updated in the database --}}
         {{!-- This user's pronouns --}}
         {{!-- This user's ig username --}}
-        <p class="card-text">Pronouns:</br>Insta:</p>
+        <p class="card-text">Pronouns: {{user.pronouns}}</br>Insta: {{user.insta}}</p>
       </div>
     </div>
 
