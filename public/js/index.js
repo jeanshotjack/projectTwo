@@ -62,19 +62,24 @@ var API = {
 // pulls new posts from db, repopulates feed on refresh
 var refreshPosts = function() {
   API.getPosts().then(function(data) {
-    var $posts = data.map(function(post) {
+    $postList.empty();
+
+    // var $posts = data.map(function(post) {
+    for(var i = 0; i < data.length; i++) {
+      var $cardDiv = $("<div>").addClass("card");
+
       var $title = $("<h3>")
-        .text(post.title)
+        .html(data[i].title)
         .attr({
           class: "card-title",
-          "data-title": post.title
+          "data-title": data[i].title
         });
 
       var $text = $("<p>")
-        .text(post.body)
+        .html(data[i].body)
         .attr({
           class: "card-text",
-          "data-body": post.body
+          "data-body": data[i].body
         });
 
       var $icon = $("<i>").attr({
@@ -87,13 +92,13 @@ var refreshPosts = function() {
         class: "btn btn-link float-right",
         "data-toggle": "modal",
         "data-target": "#viewOtherBioModal",
-        "data-whatever": post.accountId
+        "data-whatever": data[i].accountId
       });
 
       var $card = $("<div>")
         .attr({
           class: "card-body",
-          "data-id": post.id
+          "data-id": data[i].id
         })
         .append($title);
 
@@ -103,13 +108,19 @@ var refreshPosts = function() {
 
       $card.append($userButton);
 
-      return $card;
-    });
+      $cardDiv.append($card);
 
-    $postList.empty();
-    $postList.prepend($posts);
+      $postList.prepend($cardDiv);
+    }
+
+    //   return $cardDiv;
+    // });
+
+    // console.log($cardDiv);
+    // $postList.prepend($posts);
   });
 };
+refreshPosts();
 
 // handleFormSubmit is called whenever we submit a new example
 // Save the new example to the db and refresh the list
@@ -134,6 +145,8 @@ var handleFormSubmit = function(event) {
   $postName.val("");
   $postBody.val("");
   $username.val("");
+
+  $("newPostModal").hide();
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
