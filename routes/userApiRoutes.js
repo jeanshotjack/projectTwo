@@ -16,8 +16,7 @@ module.exports = function(app) {
       .findOne({
         where: {
           id: req.params.id
-        },
-        include: [db.Post]
+        }
       })
       .then(function(dbUser) {
         res.json(dbUser);

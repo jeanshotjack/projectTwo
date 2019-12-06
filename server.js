@@ -29,6 +29,7 @@ app.engine(
 app.set("view engine", "handlebars");
 app.set("trust proxy", 1);
 // Routes
+require("./routes/userApiRoutes")(app);
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 

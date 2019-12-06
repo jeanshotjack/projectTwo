@@ -17,5 +17,11 @@ module.exports = function(sequelize, Sequelize) {
     DOB: Sequelize.DATEONLY,
     insta: Sequelize.STRING
   });
+
+  account.associate = function(models) {
+    account.hasMany(models.Post, {
+      onDelete: "cascade"
+    });
+  };
   return account;
 };
