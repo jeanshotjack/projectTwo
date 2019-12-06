@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 require("dotenv").config();
 
 var express = require("express");
@@ -6,18 +5,17 @@ var exphbs = require("express-handlebars");
 var db = require("./models");
 var session = require("express-session");
 var app = express();
+var morgan = require("morgan");
 var PORT = process.env.PORT || 3000;
 
 // Middleware
+app.use(morgan());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
 app.use(
   session({
-    secret: "Noxramus",
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
+    secret: "Noctis Lucis Caelum"
   })
 );
 

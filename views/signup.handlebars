@@ -1,19 +1,53 @@
 <body class="login_body">
-    <div class="login_div">
-        <p style="color:green;"></p>
-        <h1>Sign Up</h1>
-        <form action="/createaccount" method="post">
-            <input id="create_username_input" type="text" placeholder="Username" name="username" />
-            <br />
-            <input id="create_password_input" type="password" placeholder="Password" name="password" />
-            <br />
-            <input id="create_confirm_password_input" type="password" placeholder="Confirm Password"
-                name="confirm_password" />
-            <br />
-            <br />
-            <a href="/login">back to login</a>
-            <input class="login_buttons" id="sign_up_button" type="submit" value="Sign Up" />
-            <br />
-        </form>
-    </div>
+    <div class="card text-center">
+        <div class="card-header">
+            Featured
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col col-lg-2">
+                    </div>
+                    <div class="col-md-auto">
+                        <h1>Sign Up</h1>
+                        <form action="/createaccount" method="post">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp">
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                                    anyone
+                                    else.</small>
+                                <label for="create_username_input">Username</label>
+                                <input id="create_username_input" class="form-control" type="text"
+                                    placeholder="Username" name="username" />
+                                <br />
+                                <label for="create_password_input">Password</label>
+                                <input id="create_password_input" type="password" class="form-control"
+                                    placeholder="Password" name="password" />
+                                <br />
+                                <input id="create_confirm_password_input" type="password" class="form-control"
+                                    placeholder="Confirm Password" name="confirm_password" />
+                                <br />
+                                <label for="create_password_input">Pronouns</label>
+                                <select class="form-control">
+                                    <option>They/Them</option>
+                                    <option>He/Him</option>
+                                    <option>She/Her</option>
+                                    <option>Other</option>
+                                </select>
+                                <br />
+                                <a class = "btn btn-primary" href="/login">Back to Login</a>
+                                <button class="btn btn-primary" id="sign_up_button" value = "Sign Up" type="submit">Submit</button>
+                                <br />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col col-lg-2">
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+            </div>
 </body>
