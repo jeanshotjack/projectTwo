@@ -6,7 +6,7 @@
     <div class="card">
       <div class="card-body">
         {{!-- This user's username --}}
-        <h6 class="card-subtitle mb-2">Uneditable_Username</h6>
+        <h6 class="card-subtitle mb-2">{{this.username}}</h6>
         <a href="/">
           <h1 class="card-title" id="sidebar_logo_text">NOX</h1>
         </a>
@@ -92,19 +92,21 @@
           this?</button> --}}
 
 
-        {{!-- BELOW IS MISSING THIS: href="example/{{this.UserId}}" --}}
+
+        <div id="post-list">
         {{#each Post}}
-        <div id="post-list" class="card mb-4">
+        <div class="card mb-4">
           <div class="card-body" data-id="{{this.id}}">
             <i id="flag" class="material-icons float-right">outlined_flag</i>
-            <h3 class="card-title">{{this.title}}</h3>
-            <p class="card-text">{{this.body}}</p>
+            <h3 class="card-title" data-title="{{this.title}}">{{this.title}}</h3>
+            <p class="card-text" data-body="{{this.body}}">{{this.body}}</p>
             <button type="button" class="btn btn-link float-right" data-toggle="modal" data-target="#viewOtherBioModal"
-              data-whatever="INSERT_USERNAMEHERE">{{this.username}}</button>
+              data-whatever="{{this.username}}">{{this.username}}</button>
             <h6 class="card-subtitle mb-2 text-muted">Date/TimeStamp?</h6>
           </div>
         </div>
         {{/each}}
+        </div>
 
         <div class="card mb-4">
           <div class="card-body">
