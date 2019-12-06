@@ -5,7 +5,9 @@ var sessionstorage = require("sessionstorage");
 module.exports = function(app) {
   app.get("/", function(req, res) {
     if (sessionstorage.getItem("user")) {
-      res.render("index");
+      res.render("index", {
+        user: sessionstorage.getItem("user")
+      });
       console.log("success");
       // res.json(sessionstorage.getItem("user"));
     } else {
