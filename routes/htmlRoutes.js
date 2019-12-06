@@ -103,7 +103,11 @@ module.exports = function(app) {
             var newUser = {
               username: userInfo.username,
               password: hash,
-              salt: salt
+              salt: salt,
+              email: userInfo.email,
+              pronouns: userInfo.pronouns,
+              insta: userInfo.insta,
+              DOB: userInfo.birthday
             };
             console.log("new user is");
             console.log(newUser);
@@ -123,7 +127,7 @@ module.exports = function(app) {
   app.get("/login", function(req, res) {
     res.render("login");
   });
-  app.get("/logout", function(req, res) {
+  app.get("/signout", function(req, res) {
     sessionstorage.clear();
     res.redirect("/login");
   });
