@@ -18,7 +18,7 @@
           </div>
           <div class="col-md-auto">
             <h1>Login</h1>
-            <form method="POST" action="/signin">
+            <form id="login_form" method="POST" action="/signin">
               <input id="username_input" type="text" class="form-control" placeholder="Username" name="username" />
               <br />
               <input id="password_input" class="form-control" type="password" placeholder="Password" name="password" />
@@ -33,31 +33,29 @@
         </div>
       </div>
     </div>
-    <div id = "error" class="card-footer text-muted">
-      Error
+    <div class="card-footer text-muted errmsg" {{#unless userError}}style="display:none"{{/unless}}>
+      Username is Invalid
+    </div>
+    <div class="card-footer text-muted errmsg" {{#unless passwordError}}style="display:none"{{/unless}}>
+      Password is Invalid
     </div>
   </div>
-{{!-- ////////////////// --}}
-  <div class="modal fade" id="fieldAlertModalCenter" tabindex="-1" role="dialog" aria-labelledby="fieldAlertModalCenterTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="fieldAlertModalLongTitle">Mayday!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Please fill out all fields.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-{{!-- /////////////////////// --}}
-</body>
+<script>
+$(document).ready(function() {
+  $("#login_button").on("click", function(event){
+    event.preventDefault();
+
+    var userLogin = {
+      username: $("#username_input").val(),
+      password: $("#password_input").val()
+    }
+
+     if (!userLogin.username || !userLogin.password) {
+      $(".errmsg").text("Please enter both a username and password").show();
+     } else {
+       $("#login_form").submit();
+     }
+  })
+})
+</script>
 {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
-</html>

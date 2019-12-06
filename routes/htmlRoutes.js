@@ -24,6 +24,7 @@ module.exports = function(app) {
     console.log("Posting");
     var userInfo = req.body;
     if (!userInfo.username || !userInfo.password) {
+      res.render("signup");
       console.log("Fill in all fields");
       res.render("login", {
         username: userInfo.username
@@ -54,13 +55,12 @@ module.exports = function(app) {
               var user = sessionstorage.getItem("user");
               console.log(user);
               res.redirect("/");
-              res.redirect("/");
             } else {
-              res.render("login");
+              res.render("login", { passwordError: true });
             }
           } else {
             console.log("Log in Failed");
-            $("#error").text("Invalid Info");
+            res.render("login", { userError: true });
           }
         });
     }
@@ -77,9 +77,14 @@ module.exports = function(app) {
     ) {
       console.log("All fields weren't filled out");
       res.render("signup");
+      // $("#myModal").on("show.bs.modal", function (e) {
+      //   if (!data) {
+      //     return e.preventDefault();
+      //   } // stops modal from being shown
+      // });;
     } else if (userInfo.password !== userInfo.confirm_password) {
       console.log("passwords don't match.");
-      res.render("signup");
+      res.render("signup", { matchError: true });
     } else {
       console.log("Checking if user exists...");
       db.account

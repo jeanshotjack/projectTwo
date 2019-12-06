@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-md-auto">
                         <h1>Sign Up</h1>
-                        <form action="/createaccount" method="post">
+                        <form action="/createaccount" method="post" id = "signinform">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email address</label>
                                 <input type="email" class="form-control" id="exampleInputEmail1"
@@ -55,8 +55,29 @@
                     <div class="col col-lg-2">
                     </div>
                 </div>
-                <div id = "error" class="card-footer text-muted">
-                    2 days ago
-                </div>
-            </div>
+    <div id = "error" class="card-footer text-muted errmsg" {{#unless matchError}}style="display:none"{{/unless}}>
+      Passwords do not match
+    </div>
+    </div>
 </body>
+<script>
+    $(document).ready(function() {
+  $("#sign_up_button").on("click", function(event){
+    event.preventDefault();
+
+    var userSignUp = {
+      username: $("#create_username_input").val(),
+      password: $("#create_password_input").val(),
+      confirm: $("#create_confirm_password_input").val(),
+      insta: $("#insta").val(),
+      DOB: $("#Birthday").val()
+    }
+
+     if (!userSignUp.username || !userSignUp.password) {
+      $(".errmsg").text("Please enter both a username and password").show();
+     } else {
+       $("#signinform").submit();
+     }
+  })
+})
+</script>
