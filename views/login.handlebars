@@ -18,7 +18,7 @@
           </div>
           <div class="col-md-auto">
             <h1>Login</h1>
-            <form method="POST" action="/signin">
+            <form id="login_form" method="POST" action="/signin">
               <input id="username_input" type="text" class="form-control" placeholder="Username" name="username" />
               <br />
               <input id="password_input" class="form-control" type="password" placeholder="Password" name="password" />
@@ -33,10 +33,16 @@
         </div>
       </div>
     </div>
-    <div id = "error" class="card-footer text-muted">
-      Error
+    <div class="card-footer text-muted errmsg" {{#unless userError}}style="display:none"{{/unless}}>
+       <strong><font color="red" size="4">Username is Invalid </font></strong>
+    </div>
+    <div class="card-footer text-muted errmsg" {{#unless passwordError}}style="display:none"{{/unless}}>
+      <strong><font color="red"size="4">Password is Invalid</font></strong>
+    </div>
+    <div class="card-footer text-muted errmsg" {{#unless unfilledError}}style="display:none"{{/unless}}>
+       <strong><font color="red"size="4">Fill Out All Fields</font></strong>
+    </div>
+        <div class="card-footer text-muted errmsg" {{#unless signedUp}}style="display:none"{{/unless}}>
+       <strong><font color="green"size="4">You Successfully Signed Up!</font></strong>
     </div>
   </div>
-</body>
-{{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
-</html>

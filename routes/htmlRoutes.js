@@ -27,9 +27,7 @@ module.exports = function(app) {
     var userInfo = req.body;
     if (!userInfo.username || !userInfo.password) {
       console.log("Fill in all fields");
-      res.render("login", {
-        username: userInfo.username
-      });
+      res.render("login", { unfilledError: true });
     } else {
       db.account
         .findAll({ where: { username: userInfo.username } })
@@ -56,13 +54,12 @@ module.exports = function(app) {
               var user = sessionstorage.getItem("user");
               console.log(user);
               res.redirect("/");
-              res.redirect("/");
             } else {
-              res.render("login");
+              res.render("login", { passwordError: true });
             }
           } else {
             console.log("Log in Failed");
-            $("#error").text("Invalid Info");
+            res.render("login", { userError: true });
           }
         });
     }
@@ -75,14 +72,28 @@ module.exports = function(app) {
     if (
       !userInfo.username ||
       !userInfo.password ||
-      !userInfo.confirm_password
+<<<<<<< HEAD
+      // !userInfo.confirm_password ||
+=======
+>>>>>>> 185bc0e19801f2e90cf5f0e69d75087100ae4e12
+      !userInfo.insta ||
+      !userInfo.birthday
     ) {
       console.log("All fields weren't filled out");
-      res.render("signup");
-    } else if (userInfo.password !== userInfo.confirm_password) {
-      console.log("passwords don't match.");
-      res.render("signup");
+      res.render("signup", { emptyError: true });
+<<<<<<< HEAD
+    // } else if (userInfo.password !== userInfo.confirm_password) {
+    //   console.log("passwords don't match.");
+    //   res.render("signup", { matchError: true });
+    // 
+  } 
+    else {
+=======
+      // } else if (userInfo.password !== userInfo.confirm_password) {
+      //   console.log("passwords don't match.");
+      //   res.render("signup", { matchError: true });
     } else {
+>>>>>>> 185bc0e19801f2e90cf5f0e69d75087100ae4e12
       console.log("Checking if user exists...");
       db.account
         .findAll({
@@ -117,7 +128,7 @@ module.exports = function(app) {
             db.account.create(newUser).then(function(user) {
               console.log("creating account");
               console.log("success");
-              res.render("login");
+              res.render("login", { signedUp: true });
             });
           }
         });
