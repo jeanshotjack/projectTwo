@@ -1,7 +1,7 @@
 <div>
 
   {{!-- Side Bar --}}
-  <div class="sidebar">
+  <div class="sidebar d-none">
 
     <div class="card">
       <div class="card-body">
@@ -33,7 +33,7 @@
     <div class="row mt-3">
 
       <div class="col" id="sidebar_nav">
-{{!-- 
+        {{!-- 
         <button type="button" class="btn btn-link" href="/rules">Rules</button> --}}
         <a class="btn" href="/rules"> Rules</a>
         {{!-- <button type="button" class="btn btn-link" href="/signout">Sign Out</button> --}}
@@ -45,12 +45,83 @@
 
   </div>
 
+  {{!-- NEW Side Bar --}}
+  <div class="sidebar">
+
+    {{!-- Card for Logo and User Info --}}
+    <div class="row">
+      <div class="col">
+
+        <div class="pt-2 pb-2 pl-4 pr-4">
+          <a href="/"><img class="card-img-top" src="../assets/images/nox-logo.png"
+              alt="Social and Dating App for Marginalized Genders"></a>
+        </div>
+
+        <p class="user_info">
+          <h5 class="card-title bolder-text mb-0">{{user.username}}</h5>
+        </p>
+
+        {{!-- Pronouns: "Pronouns Here" --}}
+        <p class="user_info"><small text="text-muted">My Pronouns:</small><br />{{user.pronouns}}</p>
+
+        {{!-- IG Handle: "Handle_Here" --}}
+        <p class="user_info"><small text="text-muted">My IG Handle:</small><br />{{user.insta}}</p>
+
+
+      </div>
+    </div>
+
+    {{!-- New Post Form --}}
+    <div class="row mt-3">
+      <div class="col">
+
+        <div class="form-group">
+          <label for="post-text" class="bolder-text">New Post</label>
+          <input type="text" id="post-text" class="form-control" aria-describedby="post-text" placeholder="*Title*">
+        </div>
+
+        <div class="form-group">
+          {{!-- <label for="post-description">Post</label> --}}
+          <textarea class="form-control" id="post-description" aria-describedby="post-description"
+            placeholder="*Feelings*"></textarea>
+        </div>
+
+        <button id="submit" class="btn btn-primary" data-id={{user.id}}>Submit</button>
+
+      </div>
+    </div>
+
+    {{!-- New Post Button --}}
+    <div class="row mt-3 d-none">
+      <div class="col">
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newPostModal"
+          data-whatever="">New
+          Post</button>
+
+      </div>
+    </div>
+
+    {{!-- Rules and Sign Out Links --}}
+    <div class="row mt-3">
+      <div class="col" id="sidebar_nav">
+
+        {{!-- <a href="/rules" class="btn btn-link">Rules</a> --}}
+
+        <a href="/signout" class="btn btn-link">Sign Out</a>
+
+      </div>
+    </div>
+
+  </div>
+
+  {{!-- Main Content Div --}}
   <div class="content">
 
-    <div class="row">
+    {{!-- Form Row --}}
+    <div class="row d-none">
 
       <div class="col col-12">
-
 
         {{!-- Start form --}}
         <form action="POST">
@@ -81,6 +152,7 @@
 
     </div>
 
+    {{!-- Posts Row --}}
     <div class="row">
 
       <div class="col col-12">
@@ -167,64 +239,18 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
+
+          <h4 class="modal-title" id="viewOtherBioModalLabel">{{this.username}}'s Bio</h4>
+
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
               aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="viewOtherBioModalLabel">@{{this.username}}'s Bio</h4>
+
         </div>
         <div class="modal-body">
-          <p id="bioUser">@</p>
+          {{!-- <p id="bioUser">@</p> --}}
           <p id="bioPro"></p>
           <p id="bioInsta"></p>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-{{!-- <div class="row">
-  <div class="modal fade" id="newPostModal" tabindex="-1" role="dialog" aria-labelledby="username">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-
-          <h4 class="modal-title" id="username">Fresh Post</h4>
-        </div>
-        <div class="modal-body">
-          <form action="POST">
-
-
-            {{!-- <div class="form-group">
-              <label for="username">Test Username</label>
-              <input type="text" id="username" class="form-control" aria-describedby="username" placeholder="Username">
-            </div> --}}
-
-            <div class="form-group">
-              <label for="post-text">Context:</label>
-              <input type="text" id="post-text" class="form-control" aria-describedby="post-text"
-                placeholder="Enter Your Headline">
-            </div>
-
-            <div class="form-group">
-              <label for="post-description">Share your beautiful thoughts:</label>
-              <textarea class="form-control" id="post-description" aria-describedby="post-description"
-                placeholder="Enter Your Personal"></textarea>
-            </div>
-
-            {{!-- <div class="form-group">
-              <label for="post-text" class="control-label">Context:</label>
-              <input type="text" class="form-control" id="post-text">
-            </div>
-            <div class="form-group">
-              <label for="post-description" class="control-label">Share your beautiful
-                thoughts:</label>
-              <textarea class="form-control" id="post-description"></textarea>
-            </div> --}}
-
-      
-
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" id="submit" data-dismiss="modal">Post</button> --}}
-
-        </form>
       </div>
     </div>
   </div>

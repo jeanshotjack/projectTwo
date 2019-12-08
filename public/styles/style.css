@@ -48,7 +48,16 @@ Index Page Stles
 	overflow: auto;
 	text-align: center; 
 }
-  
+
+.user_info {
+	margin-bottom: .5rem;
+}
+
+.bolder-text {
+	font-weight: 700;
+}
+
+/* Don't think this is neededed - double check */
 #sidebar_nav {
 	display: flex;
 	flex-direction: column;
