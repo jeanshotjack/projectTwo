@@ -1,35 +1,108 @@
-/* Logo Font */
-/* font-family: 'Alice', serif; */
-
-/* Body Font */
-/* font-family: 'Karla', sans-serif; */
+/* 
+Log in, Sign up Styles 
+*/
 
 body {
 	font-family: 'Karla', sans-serif; 
 }
 
-.login_div {
+#login-card, #signup-card {
+	width: 30rem;
+	margin: 0 auto;
+}
+
+.small-logo {
+	height: 4rem;
+	width: auto;
+}
+
+.message_login_error, .message_signup_error {
+	font-weight: bold;
+	color: red;
+}
+
+.message_signup_success {
+	font-weight: bold;
+	color: green;
+}
+
+
+/* Not In Use? */
+#login_body {
+	overflow: hidden;
+	width: 5rem;
+}
+
+/* 
+Index Page Stles 
+*/
+
+/* The side navigation menu */
+.sidebar {
+	margin: 0;
+	padding: 20px;
+	width: 16rem;
+	background-color: #f1f1f1;
+	position: fixed;
+	height: 100%;
+	overflow: auto;
+	text-align: center; 
+}
+  
+#sidebar_nav {
+	display: flex;
+	flex-direction: column;
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+	margin-left: 16rem;
+	width: auto;
+	padding: 25px;
+	/* height: 1000px; */
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+	.sidebar {
+	  width: 100%;
+	  height: auto;
+	  position: relative;
+	}
+	.sidebar a {float: left;}
+	div.content {margin-left: 0;}
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+	.sidebar a {
+	  text-align: center;
+	  float: none;
+	}
+}
+
+/* Not in use */
+/* .login_div {
 	text-align: center;
-	margin: 15% 28% 28% 28%;
+	/* margin: 15% 28% 28% 28%;
 	padding: 5% 2% 5% 2%;
 	border-radius: 5px;
 	border: 1px solid black;
 	background-color: #8cb3d9;
-}
+} */
 
-.login_body {
-	overflow: hidden;
-}
-
-.login_buttons {
+/* Not in use */
+/* #login_buttons {
 	margin: 0px 5px 0px 5px;
-}
+	margin: 0px;
+} */
 
-#save_button {
+/* Not in use */
+/* #save_button {
 	width: 100px;
 	height: 50px;
 	background-color: #4b4d53;
 	color: #f6c0ea;
 	font-size: 20px;
 	font-weight: bold;
-}
+} */
