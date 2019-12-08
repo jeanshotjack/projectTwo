@@ -1,48 +1,140 @@
-<html>
+<div class="container text-center pt-5 pb-5">
 
-<head>
-  <title>Login</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
+  {{!-- New LOG IN CARD --}}
+  {{!-- CARD --}}
+  <div id="login-card" class="card">
 
-<body class="login_body">
-  <div class="card text-center">
+    {{!-- Card Header: Log In Header --}}
     <div class="card-header">
-      Featured
+      <h5 class="card-title mb-0">Log In</h5>
     </div>
+
+    {{!-- Logo --}}
+    <div class="p-4">
+      <img src="../assets/images/nox-logo.png" class="card-img-top small-logo" alt="Nox">
+    </div>
+
+    {{!-- Card Body: Rules --}}
+    <div class="card-body pt-0">
+      <p class="card-text"><small class="text-muted">
+          Nox is a dating and social app designed for the queer people of marginalized genders. There are many dating
+          app options for cis gay men and cis straight couples. Please respect this space and the persons frequenting
+          it.
+
+          No transphobia, racism, hate speech, ableism, or fatphobia.
+
+          If your content is found offensive enough to be flagged 3 or more times by members of our community, it will
+          be automatically deleted.
+        </small></p>
+    </div>
+
+    {{!-- Card Body: Form --}}
+    <div class="card-body pt-2">
+
+      <form id="login_form" method="POST" action="/signin">
+        <div class="form-group">
+          <input id="username_input" type="text" class="form-control" placeholder="Username" name="username" />
+        </div>
+
+        <div class="form-group">
+          <input id="password_input" class="form-control" type="password" placeholder="Password" name="password" />
+        </div>
+
+        <button class="btn btn-primary" id="login_button" type="submit" value="Login">Log In</button>
+
+      </form>
+
+      <a href="/createaccount" class="btn btn-link">Create New Account</a>
+      {{!-- <a class="btn btn-primary" href="/createaccount">Create New Account</a>
+      <br /> --}}
+
+    </div>
+
+    {{!-- Card Footer: Log In Error Messages --}}
+
+    <div class="card-footer" {{#unless userError}}style="display:none" {{/unless}}>
+      <div class="message_login_error">
+        Invalid username.
+      </div>
+    </div>
+
+    <div class="card-footer" {{#unless passwordError}}style="display:none" {{/unless}}>
+      <div class="message_login_error">
+        Invalid password.
+      </div>
+    </div>
+
+    <div class="card-footer" {{#unless unfilledError}}style="display:none" {{/unless}}>
+      <div class="message_login_error">
+        Please fill out all fields.
+      </div>
+    </div>
+
+    <div class="card-footer" {{#unless signedUp}}style="display:none" {{/unless}}>
+      <div class="message_signup_success">
+        You're signed up! Please log in.
+      </div>
+    </div>
+
+  </div>
+
+  {{!-- Original LOG IN CARD | DELETE WHEN APPROPRIATE --}}
+  <div class="main-card card d-none">
+
+    {{!-- Card Header: Log In Header --}}
+    <div class="card-header">
+      <h5 class="card-title">Log In</h5>
+    </div>
+
+    {{!-- Logo --}}
+    <div class="p-4">
+      <img src="../assets/images/nox-logo.png" class="card-img-top" alt="Nox" />
+    </div>
+
+    {{!-- Card Body: Log In Fields --}}
     <div class="card-body">
       <div class="container">
-        <div class="row justify-content-md-center">
-          <div class="col col-lg-2">
-          </div>
-          <div class="col-md-auto">
-            <h1>Login</h1>
+        <div class="row justify-content-center">
+          <div class="col col-sm-12">
+
             <form id="login_form" method="POST" action="/signin">
               <input id="username_input" type="text" class="form-control" placeholder="Username" name="username" />
               <br />
               <input id="password_input" class="form-control" type="password" placeholder="Password" name="password" />
               <br /><br />
-              <button class="btn btn-primary" id="login_button" type="submit" value="Login">Login</button>
-              <a class="btn btn-primary" href="/createaccount">Create account</a>
+              <button class="btn btn-primary" id="login_button" type="submit" value="Login">Log In</button>
+              <br /><br />
+              <a class="btn btn-primary" href="/createaccount">Create New Account</a>
               <br />
             </form>
-          </div>
-          <div class="col col-lg-2">
+
           </div>
         </div>
       </div>
     </div>
-    <div class="card-footer text-muted errmsg" {{#unless userError}}style="display:none"{{/unless}}>
-       <strong><font color="red" size="4">Username is Invalid </font></strong>
+
+    {{!-- Card Footer: Log In Error Messages --}}
+    <div class="card-footer text-muted errmsg" {{#unless userError}}style="display:none" {{/unless}}>
+      <strong>
+        <font color="red" size="4">Username is invalid.</font>
+      </strong>
     </div>
-    <div class="card-footer text-muted errmsg" {{#unless passwordError}}style="display:none"{{/unless}}>
-      <strong><font color="red"size="4">Password is Invalid</font></strong>
+    <div class="card-footer text-muted errmsg" {{#unless passwordError}}style="display:none" {{/unless}}>
+      <strong>
+        <font color="red" size="4">Password is invalid.</font>
+      </strong>
     </div>
-    <div class="card-footer text-muted errmsg" {{#unless unfilledError}}style="display:none"{{/unless}}>
-       <strong><font color="red"size="4">Fill Out All Fields</font></strong>
+    <div class="card-footer text-muted errmsg" {{#unless unfilledError}}style="display:none" {{/unless}}>
+      <strong>
+        <font color="red" size="4">Please fill out all fields.</font>
+      </strong>
     </div>
-        <div class="card-footer text-muted errmsg" {{#unless signedUp}}style="display:none"{{/unless}}>
-       <strong><font color="green"size="4">You Successfully Signed Up!</font></strong>
+    <div class="card-footer text-muted errmsg" {{#unless signedUp}}style="display:none" {{/unless}}>
+      <strong>
+        <font color="green" size="4">You're signed up! Please log in.</font>
+      </strong>
     </div>
+
   </div>
+
+</div>
