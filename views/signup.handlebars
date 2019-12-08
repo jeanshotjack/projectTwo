@@ -48,6 +48,7 @@
                         <label for="Birthday">Birthday</label>
                         <input id="Birthday" class="form-control" type="text" placeholder="Birthday" name="birthday" />
                     </div>
+                     <small id="datehelp" class="form-text text-muted">i.e. 01-01-1999</small>
                     <div class="form-group">
                         <label for="create_password_input">Pronouns</label>
                         <select class="form-control" name="pronouns">
@@ -121,7 +122,17 @@
                 Please fill out all fields.
             </div>
         </div>
-
+            <div class="card-footer" id="dayErr" {{#unless dateErr}}style="display:none" {{/unless}}>
+            <div class="message_signup_error">
+                Please Enter a Valid Date
+            </div>
+        </div>
+                <div class="card-footer" id="existsErr" {{#unless exists}}style="display:none" {{/unless}}>
+            <div class="message_signup_error">
+                That Username is taken
+            </div>
+        </div>
+        
     </div>
 
 </div>
