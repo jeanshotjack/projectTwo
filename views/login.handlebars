@@ -1,7 +1,7 @@
-<div class="container text-center pt-5">
+<div class="container text-center pt-5 pb-5">
 
   {{!-- New LOG IN CARD --}}
-  <div class="main-card card">
+  <div id="login-card" class="card">
 
     {{!-- Card Header: Log In Header --}}
     <div class="card-header">
@@ -10,10 +10,24 @@
 
     {{!-- Logo --}}
     <div class="p-4">
-      <img src="../assets/images/nox-logo.png" class="card-img-top" alt="...">
+      <img src="../assets/images/nox-logo.png" class="card-img-top small-logo" alt="Nox">
     </div>
 
-    {{!-- Card Body Form --}}
+    {{!-- Card Body: Rules --}}
+    <div class="card-body pt-0">
+      <p class="card-text"><small class="text-muted">
+          Nox is a dating and social app designed for the queer people of marginalized genders. There are many dating
+          app options for cis gay men and cis straight couples. Please respect this space and the persons frequenting
+          it.
+
+          No transphobia, racism, hate speech, ableism, or fatphobia.
+
+          If your content is found offensive enough to be flagged 3 or more times by members of our community, it will
+          be automatically deleted.
+        </small></p>
+    </div>
+
+    {{!-- Card Body: Form --}}
     <div class="card-body pt-2">
 
       <form id="login_form" method="POST" action="/signin">
@@ -37,25 +51,25 @@
 
     {{!-- Card Footer: Log In Error Messages --}}
 
-    <div class="card-footer text-muted errmsg" {{#unless userError}}style="display:none" {{/unless}}>
+    <div class="card-footer text-muted" {{#unless userError}}style="display:none" {{/unless}}>
       <div class="message_login_error">
         Invalid username.
       </div>
     </div>
 
-    <div class="card-footer text-muted errmsg" {{#unless passwordError}}style="display:none" {{/unless}}>
+    <div class="card-footer text-muted" {{#unless passwordError}}style="display:none" {{/unless}}>
       <div class="message_login_error">
         Invalid password.
       </div>
     </div>
 
-    <div class="card-footer text-muted errmsg" {{#unless unfilledError}}style="display:none" {{/unless}}>
+    <div class="card-footer text-muted" {{#unless unfilledError}}style="display:none" {{/unless}}>
       <div class="message_login_error">
         Please fill out all fields.
       </div>
     </div>
 
-    <div class="card-footer text-muted errmsg" {{#unless signedUp}}style="display:none" {{/unless}}>
+    <div class="card-footer text-muted" {{#unless signedUp}}style="display:none" {{/unless}}>
       <div class="message_signup_success">
         You're signed up! Please log in.
       </div>

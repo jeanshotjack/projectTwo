@@ -4,12 +4,17 @@ body {
 	font-family: 'Karla', sans-serif; 
 }
 
-.main-card {
-	width: 20rem;
+#login-card, #signup-card {
+	width: 30rem;
 	margin: 0 auto;
 }
 
-.message_login_error {
+.small-logo {
+	height: 4rem;
+	width: auto;
+}
+
+.message_login_error, .message_signup_error {
 	font-weight: bold;
 	color: red;
 }
