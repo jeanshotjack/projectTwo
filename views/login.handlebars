@@ -1,6 +1,7 @@
 <div class="container text-center pt-5 pb-5">
 
   {{!-- New LOG IN CARD --}}
+  {{!-- CARD --}}
   <div id="login-card" class="card">
 
     {{!-- Card Header: Log In Header --}}
@@ -51,25 +52,25 @@
 
     {{!-- Card Footer: Log In Error Messages --}}
 
-    <div class="card-footer text-muted" {{#unless userError}}style="display:none" {{/unless}}>
+    <div class="card-footer" {{#unless userError}}style="display:none" {{/unless}}>
       <div class="message_login_error">
         Invalid username.
       </div>
     </div>
 
-    <div class="card-footer text-muted" {{#unless passwordError}}style="display:none" {{/unless}}>
+    <div class="card-footer" {{#unless passwordError}}style="display:none" {{/unless}}>
       <div class="message_login_error">
         Invalid password.
       </div>
     </div>
 
-    <div class="card-footer text-muted" {{#unless unfilledError}}style="display:none" {{/unless}}>
+    <div class="card-footer" {{#unless unfilledError}}style="display:none" {{/unless}}>
       <div class="message_login_error">
         Please fill out all fields.
       </div>
     </div>
 
-    <div class="card-footer text-muted" {{#unless signedUp}}style="display:none" {{/unless}}>
+    <div class="card-footer" {{#unless signedUp}}style="display:none" {{/unless}}>
       <div class="message_signup_success">
         You're signed up! Please log in.
       </div>

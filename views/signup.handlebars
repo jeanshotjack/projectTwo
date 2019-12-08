@@ -6,7 +6,7 @@
 
         {{!-- Card Header: Sign In Header --}}
         <div class="card-header">
-            <h5 class="card-title mb-0">Log In</h5>
+            <h5 class="card-title mb-0">Create New Account</h5>
         </div>
 
         {{!-- Logo --}}
@@ -14,96 +14,109 @@
             <img src="../assets/images/nox-logo.png" class="card-img-top small-logo" alt="Nox">
         </div>
 
-        {{!-- Card Body: Rules --}}
-        <div class="card-body pt-0">
-            <p class="card-text"><small class="text-muted">
-            Nox is a dating and social app designed for the queer people of marginalized genders. There are many dating
-            app options for cis gay men and cis straight couples. Please respect this space and the persons frequenting
-            it.
-
-            No transphobia, racism, hate speech, ableism, or fatphobia.
-
-            If your content is found offensive enough to be flagged 3 or more times by members of our community, it will
-            be automatically deleted.
-            </small></p>
-        </div>
-
         {{!-- Card Body: Form --}}
-        <div class="card-body pt-2 d-none">
+        <div class="card-body pt-0">
 
-            <form action="/createaccount" method="post" id="signinform">
+            <form id="signinform" method="POST" action="/createaccount">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
+
+                    <label for="exampleInputEmail1">Email</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        name="email">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with
-                        anyone
-                        else.</small>
-                    <label for="create_username_input">Username</label>
-                    <input id="create_username_input" class="form-control" type="text" placeholder="Username"
-                        name="username" />
-                    <br />
-                    <label for="create_password_input">Password</label>
-                    <input id="create_password_input" type="password" class="form-control" placeholder="Password"
-                        name="password" />
-                    <br />
-                    <label for="create_confirm_password_input">Confirm Password</label>
-                    <input id="create_confirm_password_input" type="password" class="form-control"
-                        placeholder="Confirm Password" name="confirm_password" />
-                    <br />
-                    <label for="insta">Instagram</label>
-                    <input id="insta" class="form-control" type="text" name="insta" />
-                    <br />
-                    <label for="Birthday">Birthday</label>
-                    <input id="Birthday" class="form-control" type="text" name="birthday" />
-                    <br />
-                    <label for="create_password_input">Pronouns</label>
-                    <select class="form-control" name="pronouns">
-                        <option>They/Them</option>
-                        <option>He/Him</option>
-                        <option>She/Her</option>
-                        <option>Other</option>
-                    </select>
-                    <br />
-                    <a class="btn btn-primary" href="/login">Back to Login</a>
-                    <button class="btn btn-primary" id="sign_up_button" value="Sign Up" type="submit">Submit</button>
-                    <br />
+                        placeholder="Your Email" name="email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email.</small>
+                    <div class="form-group">
+                        <label for="create_username_input">Username</label>
+                        <input id="create_username_input" class="form-control" type="text" placeholder="Username"
+                            name="username" />
+                    </div>
+                    <div class="form-group">
+                        <label for="create_password_input">Password</label>
+                        <input id="create_password_input" type="password" class="form-control" placeholder="Password"
+                            name="password" />
+                    </div>
+                    <div class="form-group">
+                        <label for="create_confirm_password_input">Confirm Password</label>
+                        <input id="create_confirm_password_input" type="password" class="form-control"
+                            placeholder="Confirm Password" name="confirm_password" />
+                    </div>
+                    <div class="form-group">
+                        <label for="insta">Instagram</label>
+                        <input id="insta" class="form-control" type="text" placeholder="Instagram Handle"
+                            name="insta" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Birthday">Birthday</label>
+                        <input id="Birthday" class="form-control" type="text" placeholder="Birthday" name="birthday" />
+                    </div>
+                    <div class="form-group">
+                        <label for="create_password_input">Pronouns</label>
+                        <select class="form-control" name="pronouns">
+                            <option>They/Them</option>
+                            <option>He/Him</option>
+                            <option>She/Her</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <label for="Terms of Use">Terms Of Use</label>
+                    <p class="card-text"><small class="text-muted">
+                            Nox is a dating and social app designed for the queer people of marginalized genders. There
+                            are many
+                            dating app options for cis gay men and cis straight couples. Please respect this space and
+                            the persons
+                            frequenting it.
+
+                            No transphobia, racism, hate speech, ableism, or fatphobia.
+
+                            If your content is found offensive enough to be flagged 3 or more times by members of our
+                            community, it will be automatically deleted.
+                        </small></p>
+
+                    <p class="card-text"><small>
+                            By choosing to "sign up" for an account with NOX, I agree to abide by the terms of use as
+                            described above and understand the consequences that may result if I do not abide by these
+                            terms of use.
+                        </small></p>
+
+                    {{!-- DELETE WHEN APPROPRIATE --}}
+                    {{!-- Original Buttons/Links to Sign Up and Go Back to Log In --}}
+                    {{!-- <button class="btn btn-primary" id="sign_up_button" value="Sign Up" type="submit">Create New Account</button> --}}
+                    {{!-- <a class="btn btn-primary" href="/login">Go to Login</a> --}}
+
+                    <button class="btn btn-primary" id="sign_up_button" type="submit" value="Sign Up">Sign Up</button>
+
                 </div>
             </form>
+
+            <a href="/login" class="btn btn-link">Back to Log In</a>
+
 
         </div>
 
-        {{!-- Log In Form --}}
-        <div class="card-body pt-2">
+        {{!-- Card Body: Rules --}}
+        <div class="card-body pt-0 d-none">
+            <label for="Terms of Use">Terms Of Use</label>
+            <p class="card-text"><small class="text-muted">
+                    Nox is a dating and social app designed for the queer people of marginalized genders. There are many
+                    dating app options for cis gay men and cis straight couples. Please respect this space and the
+                    persons
+                    frequenting it.
 
-            <form id="login_form" method="POST" action="/signin">
-                <div class="form-group">
-                    <input id="username_input" type="text" class="form-control" placeholder="Username"
-                        name="username" />
-                </div>
+                    No transphobia, racism, hate speech, ableism, or fatphobia.
 
-                <div class="form-group">
-                    <input id="password_input" class="form-control" type="password" placeholder="Password"
-                        name="password" />
-                </div>
-
-                <button class="btn btn-primary" id="login_button" type="submit" value="Login">Log In</button>
-
-            </form>
-
-            <a href="/createaccount" class="btn btn-link">Create New Account</a>
-
+                    If your content is found offensive enough to be flagged 3 or more times by members of our community,
+                    it will be automatically deleted.
+                </small></p>
         </div>
 
         {{!-- Card Footer: Sign Up Error Messages --}}
-
-        <div class="card-footer text-muted" id="error" {{#unless matchError}}style="display:none" {{/unless}}>
+        <div class="card-footer" id="error" {{#unless matchError}}style="display:none" {{/unless}}>
             <div class="message_signup_error">
                 Passwords do not match.
             </div>
         </div>
 
-        <div class="card-footer text-muted" id="emptyErr" {{#unless emptyError}}style="display:none" {{/unless}}>
+        <div class="card-footer" id="emptyErr" {{#unless emptyError}}style="display:none" {{/unless}}>
             <div class="message_signup_error">
                 Please fill out all fields.
             </div>
