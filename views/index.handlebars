@@ -13,7 +13,7 @@
         </div>
 
         <p class="user_info">
-          <h4 class="card-title bolder-text mb-0">{{user.username}}</h4>
+          <h4 class="card-title bolder-text mb-0">@{{user.username}}</h4>
         </p>
 
         {{!-- Pronouns: "Pronouns Here" --}}
@@ -94,7 +94,7 @@
 
               {{!-- Link to Bio of User's Post --}}
               <button type="button" class="btn btn-link float-right bio bio-modal" data-toggle="modal"
-                data-target="#viewOtherBioModal" data-whatever="{{this.accountId}}">{{this.accountId}}</button>
+                data-target="#viewOtherBioModal" data-whatever="{{this.accountId}}">@{{this.accountId}}</button>
 
               {{!-- Footer = Date/Time Stamp? --}}
               {{!-- <h6 class="card-subtitle mb-2 text-muted">Date/TimeStamp?</h6> --}}
@@ -129,7 +129,7 @@
         <div class="modal-content">
           <div class="modal-header">
 
-            <h5 class="modal-title" id="viewOtherBioModalLabel">{{this.username}}'s Bio</h4>
+            <h5 class="modal-title bolder-text" id="viewOtherBioModalLabel">{{this.username}}</h4>
 
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                   aria-hidden="true">&times;</span></button>
