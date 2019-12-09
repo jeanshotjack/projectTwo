@@ -13,7 +13,7 @@
         </div>
 
         <p class="user_info">
-          <h5 class="card-title bolder-text mb-0">{{user.username}}</h5>
+          <h4 class="card-title bolder-text mb-0">{{user.username}}</h4>
         </p>
 
         {{!-- Pronouns: "Pronouns Here" --}}
@@ -31,7 +31,7 @@
       <div class="col">
 
         <div class="form-group">
-          <label for="post-text" class="bolder-text">New Post</label>
+          <label for="post-text"><h4 class="bolder-text">New Post</h4></label>
           <input type="text" id="post-text" class="form-control" aria-describedby="post-text" placeholder="*Title*">
         </div>
 
@@ -87,7 +87,7 @@
               <i id="flag" class="material-icons float-right">outlined_flag</i>
 
               {{!-- Post Title --}}
-              <h4 class="card-title bolder-text" data-title="{{this.title}}">{{this.title}}</h3>
+              <h5 class="card-title bolder-text" data-title="{{this.title}}">{{this.title}}</h5>
 
               {{!-- Post Body --}}
               <p class="card-text" data-body="{{this.body}}">{{this.body}}</p>

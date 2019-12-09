@@ -35,7 +35,7 @@ Index Page Styles
 	margin: 0;
 	padding: 20px;
 	width: 16rem;
-	background-color: #f1f1f1;
+	background-color: #e6f6ff;
 	position: fixed;
 	height: 100%;
 	overflow: auto;
@@ -47,7 +47,9 @@ Index Page Styles
 }
 
 .bolder-text {
-	font-weight: 700;
+	font-weight: 400;
+	color: #48a9e0 !important;
+	font-family: 'Alice', serif; 
 }
 
 #sidebar_nav {
@@ -60,7 +62,8 @@ Index Page Styles
 }
 
 .bio-modal:hover{
-	text-decoration: underline !important;
+	text-decoration: none !important;
+	font-weight: bold;
 }
 
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */

@@ -75,7 +75,7 @@ var refreshPosts = function() {
       console.log(data);
       var $cardDiv = $("<div>").addClass("card mb-4");
 
-      var $title = $("<h4>")
+      var $title = $("<h5>")
         .html(data[i].title)
         .attr({
           class: "card-title bolder-text",
