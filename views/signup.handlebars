@@ -1,10 +1,9 @@
-{{!-- New SIGN UP CARD --}}
 <div class="container text-center pt-5 pb-5">
 
     {{!-- CARD --}}
     <div id="signup-card" class="card">
 
-        {{!-- Card Header: Sign In Header --}}
+        {{!-- Card Header --}}
         <div class="card-header">
             <h5 class="card-title mb-0">Create New Account</h5>
         </div>
@@ -14,9 +13,10 @@
             <img src="../assets/images/nox-logo.png" class="card-img-top small-logo" alt="Nox">
         </div>
 
-        {{!-- Card Body: Form --}}
+        {{!-- Card Body--}}
         <div class="card-body pt-0">
 
+            {{!-- Card Body: Form --}}
             <form id="signinform" method="POST" action="/createaccount">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email</label>
@@ -58,8 +58,9 @@
                     </select>
                 </div>
 
+                {{!-- Card Body: Terms of Use --}}
                 <label for="Terms of Use">Terms Of Use</label>
-                <p class="card-text"><small class="text-muted">
+                <p class="card-text"><small>
                         Nox is a dating and social app designed for the queer people of marginalized genders. There
                         are many
                         dating app options for cis gay men and cis straight couples. Please respect this space and
@@ -78,34 +79,16 @@
                         terms of use.
                     </small></p>
 
-                {{!-- DELETE WHEN APPROPRIATE --}}
-                {{!-- Original Buttons/Links to Sign Up and Go Back to Log In --}}
-                {{!-- <button class="btn btn-warning" id="sign_up_button" value="Sign Up" type="submit">Create New Account</button> --}}
-                {{!-- <a class="btn btn-warning" href="/login">Go to Login</a> --}}
-
+                {{!-- Sign Up Button --}}
                 <button class="btn btn-warning" id="sign_up_button" type="submit" value="Sign Up">Sign Up</button>
 
             </form>
 
+            {{!-- Back to Log In --}}
             <a href="/login" class="text-warning">Back to Log In</a>
 
         </div>
 
-        {{!-- Card Body: Rules --}}
-        <div class="card-body pt-0 d-none">
-            <label for="Terms of Use">Terms Of Use</label>
-            <p class="card-text"><small class="text-muted">
-                    Nox is a dating and social app designed for the queer people of marginalized genders. There are many
-                    dating app options for cis gay men and cis straight couples. Please respect this space and the
-                    persons
-                    frequenting it.
-
-                    No transphobia, racism, hate speech, ableism, or fatphobia.
-
-                    If your content is found offensive enough to be flagged 3 or more times by members of our community,
-                    it will be automatically deleted.
-                </small></p>
-        </div>
 
         {{!-- Card Footer: Sign Up Error Messages --}}
         <div class="card-footer" id="error" {{#unless matchError}}style="display:none" {{/unless}}>
