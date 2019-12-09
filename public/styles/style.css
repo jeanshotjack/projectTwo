@@ -27,7 +27,7 @@ body {
 }
 
 /* 
-Index Page Stles 
+Index Page Styles 
 */
 
 /* The side navigation menu */
@@ -53,6 +53,14 @@ Index Page Stles
 #sidebar_nav {
 	display: flex;
 	flex-direction: column;
+}
+
+.bio-modal{
+	color: #ffc107!important;
+}
+
+.bio-modal:hover{
+	text-decoration: underline !important;
 }
 
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */

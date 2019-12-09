@@ -75,10 +75,10 @@ var refreshPosts = function() {
       console.log(data);
       var $cardDiv = $("<div>").addClass("card mb-4");
 
-      var $title = $("<h3>")
+      var $title = $("<h4>")
         .html(data[i].title)
         .attr({
-          class: "card-title",
+          class: "card-title bolder-text",
           "data-title": data[i].title
         });
 
@@ -96,7 +96,7 @@ var refreshPosts = function() {
 
       var $userButton = $("<button>").attr({
         type: "button",
-        class: "btn btn-link float-right bio",
+        class: "btn btn-link float-right bio bio-modal",
         "data-toggle": "modal",
         "data-target": "#viewOtherBioModal",
         "data-id": data[i].account.id
