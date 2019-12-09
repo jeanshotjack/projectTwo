@@ -19,78 +19,75 @@
 
             <form id="signinform" method="POST" action="/createaccount">
                 <div class="form-group">
-
                     <label for="exampleInputEmail1">Email</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                         placeholder="Your Email" name="email">
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email.</small>
-                    <div class="form-group">
-                        <label for="create_username_input">Username</label>
-                        <input id="create_username_input" class="form-control" type="text" placeholder="Username"
-                            name="username" />
-                    </div>
-                    <div class="form-group">
-                        <label for="create_password_input">Password</label>
-                        <input id="create_password_input" type="password" class="form-control" placeholder="Password"
-                            name="password" />
-                    </div>
-                    <div class="form-group">
-                        <label for="create_confirm_password_input">Confirm Password</label>
-                        <input id="create_confirm_password_input" type="password" class="form-control"
-                            placeholder="Confirm Password" name="confirm_password" />
-                    </div>
-                    <div class="form-group">
-                        <label for="insta">Instagram</label>
-                        <input id="insta" class="form-control" type="text" placeholder="Instagram Handle"
-                            name="insta" />
-                    </div>
-                    <div class="form-group">
-                        <label for="Birthday">Birthday</label>
-                        <input id="Birthday" class="form-control" type="text" placeholder="Birthday" name="birthday" />
-                    </div>
-                     <small id="datehelp" class="form-text text-muted">i.e. 01-01-1999</small>
-                    <div class="form-group">
-                        <label for="create_password_input">Pronouns</label>
-                        <select class="form-control" name="pronouns">
-                            <option>They/Them</option>
-                            <option>He/Him</option>
-                            <option>She/Her</option>
-                            <option>Other</option>
-                        </select>
-                    </div>
-
-                    <label for="Terms of Use">Terms Of Use</label>
-                    <p class="card-text"><small class="text-muted">
-                            Nox is a dating and social app designed for the queer people of marginalized genders. There
-                            are many
-                            dating app options for cis gay men and cis straight couples. Please respect this space and
-                            the persons
-                            frequenting it.
-
-                            No transphobia, racism, hate speech, ableism, or fatphobia.
-
-                            If your content is found offensive enough to be flagged 3 or more times by members of our
-                            community, it will be automatically deleted.
-                        </small></p>
-
-                    <p class="card-text"><small>
-                            By choosing to "sign up" for an account with NOX, I agree to abide by the terms of use as
-                            described above and understand the consequences that may result if I do not abide by these
-                            terms of use.
-                        </small></p>
-
-                    {{!-- DELETE WHEN APPROPRIATE --}}
-                    {{!-- Original Buttons/Links to Sign Up and Go Back to Log In --}}
-                    {{!-- <button class="btn btn-primary" id="sign_up_button" value="Sign Up" type="submit">Create New Account</button> --}}
-                    {{!-- <a class="btn btn-primary" href="/login">Go to Login</a> --}}
-
-                    <button class="btn btn-primary" id="sign_up_button" type="submit" value="Sign Up">Sign Up</button>
-
                 </div>
+                <div class="form-group">
+                    <label for="create_username_input">Username</label>
+                    <input id="create_username_input" class="form-control" type="text" placeholder="Username"
+                        name="username" />
+                </div>
+                <div class="form-group">
+                    <label for="create_password_input">Password</label>
+                    <input id="create_password_input" type="password" class="form-control" placeholder="Password"
+                        name="password" />
+                </div>
+                <div class="form-group">
+                    <label for="create_confirm_password_input">Confirm Password</label>
+                    <input id="create_confirm_password_input" type="password" class="form-control"
+                        placeholder="Confirm Password" name="confirm_password" />
+                </div>
+                <div class="form-group">
+                    <label for="insta">Instagram</label>
+                    <input id="insta" class="form-control" type="text" placeholder="Instagram Handle" name="insta" />
+                </div>
+                <div class="form-group">
+                    <label for="Birthday">Birthday</label>
+                    <input id="Birthday" class="form-control" type="text" placeholder="Birthday" name="birthday" />
+                    <small id="datehelp" class="form-text text-muted">MM-DD-YYYY</small>
+                </div>
+                <div class="form-group">
+                    <label for="create_password_input">Pronouns</label>
+                    <select class="form-control" name="pronouns">
+                        <option>They/Them</option>
+                        <option>He/Him</option>
+                        <option>She/Her</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <label for="Terms of Use">Terms Of Use</label>
+                <p class="card-text"><small class="text-muted">
+                        Nox is a dating and social app designed for the queer people of marginalized genders. There
+                        are many
+                        dating app options for cis gay men and cis straight couples. Please respect this space and
+                        the persons
+                        frequenting it.
+
+                        No transphobia, racism, hate speech, ableism, or fatphobia.
+
+                        If your content is found offensive enough to be flagged 3 or more times by members of our
+                        community, it will be automatically deleted.
+                    </small></p>
+
+                <p class="card-text"><small>
+                        By choosing to "sign up" for an account with NOX, I agree to abide by the terms of use as
+                        described above and understand the consequences that may result if I do not abide by these
+                        terms of use.
+                    </small></p>
+
+                {{!-- DELETE WHEN APPROPRIATE --}}
+                {{!-- Original Buttons/Links to Sign Up and Go Back to Log In --}}
+                {{!-- <button class="btn btn-primary" id="sign_up_button" value="Sign Up" type="submit">Create New Account</button> --}}
+                {{!-- <a class="btn btn-primary" href="/login">Go to Login</a> --}}
+
+                <button class="btn btn-primary" id="sign_up_button" type="submit" value="Sign Up">Sign Up</button>
+
             </form>
 
             <a href="/login" class="btn btn-link">Back to Log In</a>
-
 
         </div>
 
@@ -122,17 +119,19 @@
                 Please fill out all fields.
             </div>
         </div>
-            <div class="card-footer" id="dayErr" {{#unless dateErr}}style="display:none" {{/unless}}>
+
+        <div class="card-footer" id="dayErr" {{#unless dateErr}}style="display:none" {{/unless}}>
             <div class="message_signup_error">
-                Please Enter a Valid Date
+                Please enter a valid date.
             </div>
         </div>
-                <div class="card-footer" id="existsErr" {{#unless exists}}style="display:none" {{/unless}}>
+
+        <div class="card-footer" id="existsErr" {{#unless exists}}style="display:none" {{/unless}}>
             <div class="message_signup_error">
-                That Username is taken
+                Username is taken.
             </div>
         </div>
-        
+
     </div>
 
 </div>
