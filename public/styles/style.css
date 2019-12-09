@@ -26,13 +26,6 @@ body {
 	color: green;
 }
 
-
-/* Not In Use? */
-#login_body {
-	overflow: hidden;
-	width: 5rem;
-}
-
 /* 
 Index Page Stles 
 */
@@ -57,7 +50,6 @@ Index Page Stles
 	font-weight: 700;
 }
 
-/* Don't think this is neededed - double check */
 #sidebar_nav {
 	display: flex;
 	flex-direction: column;
@@ -89,29 +81,3 @@ div.content {
 	  float: none;
 	}
 }
-
-/* Not in use */
-/* .login_div {
-	text-align: center;
-	/* margin: 15% 28% 28% 28%;
-	padding: 5% 2% 5% 2%;
-	border-radius: 5px;
-	border: 1px solid black;
-	background-color: #8cb3d9;
-} */
-
-/* Not in use */
-/* #login_buttons {
-	margin: 0px 5px 0px 5px;
-	margin: 0px;
-} */
-
-/* Not in use */
-/* #save_button {
-	width: 100px;
-	height: 50px;
-	background-color: #4b4d53;
-	color: #f6c0ea;
-	font-size: 20px;
-	font-weight: bold;
-} */
