@@ -26,15 +26,8 @@ body {
 	color: green;
 }
 
-
-/* Not In Use? */
-#login_body {
-	overflow: hidden;
-	width: 5rem;
-}
-
 /* 
-Index Page Stles 
+Index Page Styles 
 */
 
 /* The side navigation menu */
@@ -42,16 +35,35 @@ Index Page Stles
 	margin: 0;
 	padding: 20px;
 	width: 16rem;
-	background-color: #f1f1f1;
+	background-color: #e6f6ff;
 	position: fixed;
 	height: 100%;
 	overflow: auto;
 	text-align: center; 
 }
-  
+
+.user_info {
+	margin-bottom: .5rem;
+}
+
+.bolder-text {
+	font-weight: 400;
+	color: #48a9e0 !important;
+	font-family: 'Alice', serif; 
+}
+
 #sidebar_nav {
 	display: flex;
 	flex-direction: column;
+}
+
+.bio-modal{
+	color: #ffc107!important;
+}
+
+.bio-modal:hover{
+	text-decoration: none !important;
+	font-weight: bold;
 }
 
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
@@ -80,29 +92,3 @@ div.content {
 	  float: none;
 	}
 }
-
-/* Not in use */
-/* .login_div {
-	text-align: center;
-	/* margin: 15% 28% 28% 28%;
-	padding: 5% 2% 5% 2%;
-	border-radius: 5px;
-	border: 1px solid black;
-	background-color: #8cb3d9;
-} */
-
-/* Not in use */
-/* #login_buttons {
-	margin: 0px 5px 0px 5px;
-	margin: 0px;
-} */
-
-/* Not in use */
-/* #save_button {
-	width: 100px;
-	height: 50px;
-	background-color: #4b4d53;
-	color: #f6c0ea;
-	font-size: 20px;
-	font-weight: bold;
-} */

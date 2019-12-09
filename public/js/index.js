@@ -75,10 +75,10 @@ var refreshPosts = function() {
       console.log(data);
       var $cardDiv = $("<div>").addClass("card mb-4");
 
-      var $title = $("<h3>")
+      var $title = $("<h5>")
         .html(data[i].title)
         .attr({
-          class: "card-title",
+          class: "card-title bolder-text",
           "data-title": data[i].title
         });
 
@@ -96,11 +96,11 @@ var refreshPosts = function() {
 
       var $userButton = $("<button>").attr({
         type: "button",
-        class: "btn btn-link float-right bio",
+        class: "btn btn-link float-right bio bio-modal",
         "data-toggle": "modal",
         "data-target": "#viewOtherBioModal",
         "data-id": data[i].account.id
-      }).text(data[i].account.username);
+      }).text("@" + data[i].account.username);
 
       var $card = $("<div>")
         .attr({
@@ -131,7 +131,7 @@ refreshPosts();
 
 $(document).on("click", ".bio", function() {
   API.getOneUser($(this).attr("data-id")).then(function(data) {
-    $("#viewOtherBioModalLabel").text("@" + data.username + "'s Bio");
+    $("#viewOtherBioModalLabel").text("@" + data.username);
     $("#bioUser").text("Username: " + data.username);
     $("#bioPro").text("Pronouns: " + data.pronouns);
     $("#bioInsta").text("Insta: @" + data.insta);
@@ -151,7 +151,7 @@ var handleFormSubmit = function(event) {
   };
 
   if (!(newPost.title && newPost.body && newPost.accountId)) {
-    alert("You must enter an example text, description, and user!");
+    alert("Please fill out both fields!");
     return;
   }
 
