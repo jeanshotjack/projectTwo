@@ -1,7 +1,8 @@
 var db = require("../models");
 var crypto = require("crypto");
 var sessionstorage = require("sessionstorage");
-
+var moment = require("moment");
+moment().format();
 module.exports = function(app) {
   app.get("/", function(req, res) {
     if (sessionstorage.getItem("user")) {
@@ -46,11 +47,7 @@ module.exports = function(app) {
               )
               .toString("hex");
             if (hash === username[0].password) {
-              // req.session.username = username[0];
               sessionstorage.setItem("user", username[0]);
-              // console.log("Log in Successful");
-              // console.log(sessionstorage.getItem("user"));
-              // res.redirect("/");
               var user = sessionstorage.getItem("user");
               console.log(user);
               res.redirect("/");
@@ -68,7 +65,6 @@ module.exports = function(app) {
   app.post("/createaccount", function(req, res) {
     console.log(req.body);
     var userInfo = req.body;
-
     if (
       !userInfo.username ||
       !userInfo.password ||
@@ -92,14 +88,13 @@ module.exports = function(app) {
         .then(function(user) {
           if (user.length === 1) {
             console.log("User already exists");
-            res.render("signup");
+            res.render("signup", { exists: true });
           } else {
             console.log("encrypting...");
             var salt = crypto.randomBytes(64).toString("hex");
             var hash = crypto
               .pbkdf2Sync(userInfo.password, salt, 10000, 64, "sha512")
               .toString("hex");
-
             var newUser = {
               username: userInfo.username,
               password: hash,
@@ -109,8 +104,16 @@ module.exports = function(app) {
               insta: userInfo.insta,
               DOB: userInfo.birthday
             };
-            console.log("new user is");
-            console.log(newUser);
+            try {
+              // eslint-disable-next-line no-unused-vars
+              db.account.create(newUser).then(function(user) {
+                console.log("creating account");
+                console.log("success");
+                res.render("login", { signedUp: true });
+              });
+            } catch (err) {
+              console.log("error");
+            }
             // eslint-disable-next-line no-unused-vars
             db.account.create(newUser).then(function(user) {
               console.log("creating account");
